@@ -1,2 +1,2 @@
-# video-list
-videos list to watch on youtub videos
+# youtube-playlist
+manage playlist to watch videos on youtube
