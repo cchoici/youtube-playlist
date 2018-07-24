@@ -1,0 +1,42 @@
+{
+  "name": "youtube playlist",
+  "version": "1.0.0",
+  "description": "youtube playlist",
+  "main": "main_process.js",
+  "scripts": {
+    "bundle": "webpack --mode development",
+    "serve": "electron .",
+    "start": "npm-run-all --parallel bundle serve",
+    "lint": "eslint app/src"
+  },
+  "author": "cchoici",
+  "repository": "",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^7.1.4",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "electron": "^1.8.2",
+    "electron-reload": "^1.2.2",
+    "eslint": "^5.2.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.10",
+    "npm-run-all": "^4.1.2",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.11"
+  },
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}
