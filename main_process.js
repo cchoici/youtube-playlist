@@ -11,10 +11,11 @@ let mainWindow;
 
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
-    width: 300,
-    height: 400,
+    width: 310,
+    height: 430,
     transparent: true,
     frame: false,
   });
   mainWindow.loadURL(`file://${__dirname}/app/index.html`);
+  // mainWindow.webContents.openDevTools();
 });

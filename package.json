@@ -1,5 +1,5 @@
 {
-  "name": "youtube playlist",
+  "name": "youtube-playlist",
   "version": "1.0.0",
   "description": "youtube playlist",
   "main": "main_process.js",
@@ -7,15 +7,21 @@
     "bundle": "webpack --mode development",
     "serve": "electron .",
     "start": "npm-run-all --parallel bundle serve",
+    "flow": "flow status",
+    "flow-stop": "flow stop",
     "lint": "eslint app/src"
   },
   "author": "cchoici",
   "repository": "",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "^6.24.1",
     "babel-loader": "^7.1.4",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
     "electron": "^1.8.2",
@@ -29,6 +35,7 @@
     "eslint-plugin-react": "^7.10.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.10",
+    "flow-bin": "^0.77.0",
     "npm-run-all": "^4.1.2",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
@@ -36,7 +43,10 @@
     "webpack-cli": "^2.0.11"
   },
   "dependencies": {
+    "i": "^0.3.6",
+    "install": "^0.12.1",
     "react": "^16.4.1",
+    "react-beautiful-dnd": "^8.0.5",
     "react-dom": "^16.4.1"
   }
 }

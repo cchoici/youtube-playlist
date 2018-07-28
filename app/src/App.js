@@ -1,13 +1,22 @@
+/* @flow */
+
 import React from 'react';
+import DragDropList from './components/DragDropList';
 
 const App = () => (
   <div>
-    <h2>
-      Construction...
-    </h2>
-    <a id="close" href="javascript:window.close()">
+    <div className="container">
+      <DragDropList />
+    </div>
+    <button
+      type="button"
+      id="close"
+      onClick={() => {
+        window.close();
+      }}
+    >
       X
-    </a>
+    </button>
   </div>
 );
 
