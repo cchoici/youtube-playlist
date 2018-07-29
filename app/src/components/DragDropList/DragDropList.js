@@ -1,5 +1,6 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import styles from './styles.css';
 
 const getItems = count => (
   Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -24,7 +25,7 @@ const getItemStyle = (isDragging, draggableStyle) => {
     userSelect: 'none',
     padding: grid * 2,
     margin: `0 0 ${grid}px 0`,
-    background: isDragging ? '#8aba87' : '#ccc',
+    background: isDragging ? 'rgb(181, 169, 169)' : 'rgb(197, 186, 186)',
   };
   return transform ? { ...style, ...draggableStyle } : style;
 };
@@ -76,6 +77,7 @@ class DragDropList extends React.Component {
                 <Draggable key={item.id} draggableId={item.id} index={index}>
                   {(provided2, snapshot2) => (
                     <div
+                      className={styles.box}
                       ref={provided2.innerRef}
                       {...provided2.draggableProps}
                       {...provided2.dragHandleProps}

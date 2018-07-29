@@ -17,5 +17,5 @@ app.on('ready', () => {
     frame: false,
   });
   mainWindow.loadURL(`file://${__dirname}/app/index.html`);
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 });
