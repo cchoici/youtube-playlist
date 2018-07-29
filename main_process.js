@@ -1,7 +1,19 @@
-// Basic init
 const electron = require('electron');
+const Store = require('electron-store');
 
 const { app, BrowserWindow } = electron;
+const store = new Store({
+  name: 'ui',
+  defaults: {
+    windowBounds: {
+      x: 0,
+      y: 0,
+      width: 800,
+      height: 600,
+    },
+  },
+});
+
 
 // Let electron reloads by itself when webpack watches changes in ./app/
 require('electron-reload')(__dirname);
@@ -10,12 +22,37 @@ require('electron-reload')(__dirname);
 let mainWindow;
 
 app.on('ready', () => {
-  mainWindow = new BrowserWindow({
-    width: 310,
-    height: 430,
-    transparent: true,
-    frame: false,
-  });
+  {
+    const {
+      x,
+      y,
+      width,
+      height,
+    } = store.get('windowBounds');
+    mainWindow = new BrowserWindow({
+      x,
+      y,
+      width,
+      height,
+      transparent: true,
+      frame: false,
+    });
+  }
   mainWindow.loadURL(`file://${__dirname}/app/index.html`);
-  mainWindow.webContents.openDevTools();
+  mainWindow.on('close', () => {
+    const {
+      x,
+      y,
+      width,
+      height,
+    } = mainWindow.getBounds();
+    store.set('windowBounds', {
+      x,
+      y,
+      width,
+      height,
+    });
+    mainWindow = null;
+  });
+  mainWindow.openDevTools({ detech: true });
 });

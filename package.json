@@ -24,7 +24,6 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
-    "electron": "^1.8.2",
     "electron-reload": "^1.2.2",
     "eslint": "^5.2.0",
     "eslint-config-airbnb": "^17.0.0",
@@ -43,6 +42,8 @@
     "webpack-cli": "^2.0.11"
   },
   "dependencies": {
+    "electron": "^1.8.2",
+    "electron-store": "^2.0.0",
     "i": "^0.3.6",
     "install": "^0.12.1",
     "react": "^16.4.1",
