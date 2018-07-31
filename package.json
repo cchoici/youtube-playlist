@@ -18,11 +18,12 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.6",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-3": "^6.24.1",
     "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
     "css-loader": "^0.28.11",
     "electron-reload": "^1.2.2",
     "eslint": "^5.2.0",
@@ -46,8 +47,10 @@
     "electron-store": "^2.0.0",
     "i": "^0.3.6",
     "install": "^0.12.1",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-beautiful-dnd": "^8.0.5",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "react-youtube": "^7.6.0"
   }
 }

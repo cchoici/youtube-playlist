@@ -2,12 +2,13 @@
 import * as React from 'react';
 import { remote } from 'electron';
 import DragDropList from './components/DragDropList';
+import Player from './components/Player';
 
-window.addEventListener('resize', onResize);
-const onResize = () => {
-   const win = remote.getCurrentWindow();
-   win.resize();
-}
+// window.addEventListener('resize', onResize);
+// const onResize = () => {
+//   const win = remote.getCurrentWindow();
+//   win.resize();
+// };
 const closeWindow = () => {
   const win = remote.getCurrentWindow();
   win.close();
@@ -28,6 +29,7 @@ const App = () => (
       </button>
     </div>
     <div className="content">
+      <Player />
       <DragDropList />
     </div>
   </div>

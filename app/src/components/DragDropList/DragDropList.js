@@ -66,36 +66,38 @@ class DragDropList extends React.Component {
   render() {
     const { items } = this.state;
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-            >
-              {items.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided2, snapshot2) => (
-                    <div
-                      className={styles.box}
-                      ref={provided2.innerRef}
-                      {...provided2.draggableProps}
-                      {...provided2.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot2.isDragging,
-                        provided2.draggableProps.style,
-                      )}
-                    >
-                      {item.content}
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+      <div className={styles.container}>
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Droppable droppableId="droppable">
+            {(provided, snapshot) => (
+              <div
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+              >
+                {items.map((item, index) => (
+                  <Draggable key={item.id} draggableId={item.id} index={index}>
+                    {(provided2, snapshot2) => (
+                      <div
+                        className={styles.box}
+                        ref={provided2.innerRef}
+                        {...provided2.draggableProps}
+                        {...provided2.dragHandleProps}
+                        style={getItemStyle(
+                          snapshot2.isDragging,
+                          provided2.draggableProps.style,
+                        )}
+                      >
+                        {item.content}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
     );
   }
 }

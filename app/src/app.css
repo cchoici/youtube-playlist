@@ -15,8 +15,7 @@
 :global #container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  
+  /*align-items: center;*/
 }
 :global #header {
   display: flex;
@@ -42,11 +41,14 @@
 :global #header button:hover{
   background: #fff;
 }
+
 :global .content {
+  display: flex;
+  flex-direction: row;
   overflow-y: auto;
   overflow-x: hidden;
-  height: 370px;
-  margin: 10px 0;
+  height: 390px;
+  /*margin: 10px 0;*/
   color: #fff;
 }
 

@@ -9,6 +9,13 @@
 ._3nFpIjZ-lPoAasffeggk5U {                 /* Composition example */
     text-decoration: none;
 }
+._1t85t5Ocx3yLBCJCuD9hmN {
+    margin: 10px;
+    width: 280px;
+    height: 360px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 ._5V3QV9aY-Vu05VLnPJQxH
 {
 	/*background: #fff;*/
@@ -59,8 +66,7 @@ html, body {
 #container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  
+  /*align-items: center;*/
 }
 #header {
   display: flex;
@@ -86,11 +92,14 @@ html, body {
 #header button:hover{
   background: #fff;
 }
+
 .content {
+  display: flex;
+  flex-direction: row;
   overflow-y: auto;
   overflow-x: hidden;
-  height: 370px;
-  margin: 10px 0;
+  height: 390px;
+  /*margin: 10px 0;*/
   color: #fff;
 }
 

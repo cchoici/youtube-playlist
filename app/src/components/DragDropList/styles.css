@@ -10,6 +10,13 @@
     composes: tone;                 /* Composition example */
     text-decoration: none;
 }
+.container {
+    margin: 10px;
+    width: 280px;
+    height: 360px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 .box
 {
 	/*background: #fff;*/
