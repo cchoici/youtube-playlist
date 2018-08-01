@@ -8,8 +8,8 @@ const store = new Store({
     windowBounds: {
       x: 0,
       y: 0,
-      width: 900,
-      height: 600,
+      width: 910,
+      height: 480,
     },
   },
 });
@@ -32,8 +32,12 @@ app.on('ready', () => {
     mainWindow = new BrowserWindow({
       x,
       y,
-      width: 925,
-      height: 430,
+      width: 910,
+      height: 480,
+      maxWidth: 910,
+      maxHeight: 480,
+      resizable: false,
+      maximizable: false,
       transparent: true,
       frame: false,
     });

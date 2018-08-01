@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
+import './playerStyles.scss';
 
 const opts = {
-  height: '370',
-  width: '620',
+  height: '360',
+  width: '580',
   playerVars: { // https://developers.google.com/youtube/player_parameters
     autoplay: 1,
     controls: 0,
@@ -24,9 +25,6 @@ class YouTubePlayer extends React.Component {
   //   super(props);
   //   this.onReady = this.onReady.bind(this);
   // }
-
-
-
   render() {
     const { videoId } = this.props;
     return (
@@ -43,7 +41,7 @@ YouTubePlayer.propTypes = {
 };
 
 YouTubePlayer.defaultProps = {
-  videoId: 'dhjomo8W6Lc',
+  videoId: 'XKuL5xaKZHM',
 };
 
 export default YouTubePlayer;

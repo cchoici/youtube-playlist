@@ -1,6 +1,6 @@
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import styles from './styles.css';
+import './dragDropListStyles.scss';
 
 const getItems = count => (
   Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -17,14 +17,12 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-const grid = 8;
-
 const getItemStyle = (isDragging, draggableStyle) => {
   const { transform } = draggableStyle;
   const style = {
     userSelect: 'none',
-    padding: grid * 2,
-    margin: `0 0 ${grid}px 0`,
+    padding: 15,
+    margin: '0 0 1px 0',
     background: isDragging ? 'rgb(181, 169, 169)' : 'rgb(197, 186, 186)',
   };
   return transform ? { ...style, ...draggableStyle } : style;
@@ -32,7 +30,7 @@ const getItemStyle = (isDragging, draggableStyle) => {
 
 const getListStyle = isDraggingOver => ({
   backgroundColor: isDraggingOver ? 'rgba(255, 255, 255, 0.6)' : 'transparent',
-  padding: grid,
+  padding: 10,
   width: 260,
 });
 
@@ -66,7 +64,7 @@ class DragDropList extends React.Component {
   render() {
     const { items } = this.state;
     return (
-      <div className={styles.container}>
+      <div className="containerDragDropList">
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -78,7 +76,7 @@ class DragDropList extends React.Component {
                   <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided2, snapshot2) => (
                       <div
-                        className={styles.box}
+                        className="box"
                         ref={provided2.innerRef}
                         {...provided2.draggableProps}
                         {...provided2.dragHandleProps}
