@@ -1,5 +1,5 @@
 {
-  "name": "electron-react-boilerplate",
+  "name": "youtube-playlist",
   "productName": "ElectronReact",
   "version": "0.13.3",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
@@ -97,7 +97,6 @@
   },
   "keywords": [
     "electron",
-    "boilerplate",
     "react",
     "redux",
     "flow",
