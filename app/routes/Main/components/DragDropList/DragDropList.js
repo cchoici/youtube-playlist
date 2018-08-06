@@ -2,12 +2,11 @@ import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import styles from './dragDropListStyles.scss';
 
-const getItems = count => (
+const getItems = count =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
     id: `item-${k}`,
-    content: `item ${k}`,
-  }))
-);
+    content: `item ${k}`
+  }));
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -23,7 +22,7 @@ const getItemStyle = (isDragging, draggableStyle) => {
     userSelect: 'none',
     padding: 15,
     margin: '0 0 1px 0',
-    background: isDragging ? 'rgb(181, 169, 169)' : 'rgb(197, 186, 186)',
+    background: isDragging ? 'rgb(181, 169, 169)' : 'rgb(197, 186, 186)'
   };
   return transform ? { ...style, ...draggableStyle } : style;
 };
@@ -31,14 +30,14 @@ const getItemStyle = (isDragging, draggableStyle) => {
 const getListStyle = isDraggingOver => ({
   backgroundColor: isDraggingOver ? 'rgba(255, 255, 255, 0.6)' : 'transparent',
   padding: 10,
-  width: 260,
+  width: 260
 });
 
 class DragDropList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: getItems(11),
+      items: getItems(11)
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
@@ -53,11 +52,11 @@ class DragDropList extends React.Component {
     const items = reorder(
       itemsOri,
       result.source.index,
-      result.destination.index,
+      result.destination.index
     );
 
     this.setState({
-      items,
+      items
     });
   }
 
@@ -82,7 +81,7 @@ class DragDropList extends React.Component {
                         {...provided2.dragHandleProps}
                         style={getItemStyle(
                           snapshot2.isDragging,
-                          provided2.draggableProps.style,
+                          provided2.draggableProps.style
                         )}
                       >
                         {item.content}

@@ -21,9 +21,9 @@ const store = new Store({
       x: 0,
       y: 0,
       width: 910,
-      height: 480,
-    },
-  },
+      height: 480
+    }
+  }
 });
 
 let mainWindow = null;
@@ -72,24 +72,19 @@ app.on('ready', async () => {
   ) {
     await installExtensions();
   }
-  const {
+  const { x, y, width, height } = store.get('windowBounds');
+  mainWindow = new BrowserWindow({
     x,
     y,
     width,
     height,
-  } = store.get('windowBounds');
-  mainWindow = new BrowserWindow({
-    x,
-    y,
-    width: 910,
-    height: 480,
     maxWidth: 910,
     maxHeight: 480,
     resizable: false,
     maximizable: false,
     transparent: true,
     show: false,
-    frame: false,
+    frame: false
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
@@ -104,18 +99,13 @@ app.on('ready', async () => {
     mainWindow.focus();
   });
 
-  mainWindow.on('closed', () => {
-    const {
-      x,
-      y,
-      width,
-      height,
-    } = mainWindow.getBounds();
+  mainWindow.on('close', () => {
+    const { x: xS, y: yS, width: wS, height: hS } = mainWindow.getBounds();
     store.set('windowBounds', {
-      x,
-      y,
-      width,
-      height,
+      x: xS,
+      y: yS,
+      width: wS,
+      height: hS
     });
     mainWindow = null;
   });

@@ -1,43 +1,29 @@
-/* @flow */
 import * as React from 'react';
-import { remote } from 'electron';
-// import { Provider } from 'react-redux';
-import DragDropList from './components/DragDropList';
-import Player from './components/Player';
-import SearchBar from './components/SearchBar';
 
-// window.addEventListener('resize', onResize);
-// const onResize = () => {
-//   const win = remote.getCurrentWindow();
-//   win.resize();
-// };
-const closeWindow = () => {
-  const win = remote.getCurrentWindow();
-  win.close();
-};
-const minimizeWindow = () => {
-  const win = remote.getCurrentWindow();
-  win.minimize();
-};
+import { Provider } from 'react-redux';
+import PropTypes from 'prop-types';
+import { ConnectedRouter } from 'react-router-redux';
+import { Route, Switch } from 'react-router';
+import MainView from './routes/Main/components/MainView';
 
-const App = () => (
-  <div>
-    <div id="appHeader">
-      <button type="button" onClick={closeWindow}>
-        X
-      </button>
-      <button type="button" onClick={minimizeWindow}>
-        -
-      </button>
-    </div>
-    <div id="appContent">
-      <SearchBar />
-      <div className="appCols">
-        <Player />
-        <DragDropList />
-      </div>
-    </div>
-  </div>
+const App = ({ store, history }) => (
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route path="/" component={MainView} />
+      </Switch>
+    </ConnectedRouter>
+  </Provider>
 );
+
+App.propTypes = {
+  store: PropTypes.shape({}),
+  history: PropTypes.shape({})
+};
+
+App.defaultProps = {
+  store: {},
+  history: {}
+};
 
 export default App;
