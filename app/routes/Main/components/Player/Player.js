@@ -49,8 +49,8 @@ class Player extends React.Component {
   onChange() {
     this.player.cueVideoById({
         videoId: 'sg_WE0ToJjM',
-        startSeconds: 10,
-        endSeconds: 100,
+        // startSeconds: 10,
+        // endSeconds: 100,
       });
     this.player.playVideo();
   }
