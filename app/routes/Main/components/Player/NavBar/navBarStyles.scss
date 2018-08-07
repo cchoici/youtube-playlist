@@ -1,0 +1,10 @@
+.containerNavBar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	button {
+		margin: 3px 10px;
+		flex: 1;
+	}
+}
