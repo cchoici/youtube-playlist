@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { remote } from 'electron';
 // import PropTypes from 'prop-types';
-import DragDropList from '../DragDropList';
+import DragDropListContainer from '../../containers/DragDropListContainer';
 import PlayerContainer from '../../containers/PlayerContainer';
 import SearchBarContainer from '../../containers/SearchBarContainer';
 
@@ -33,7 +33,7 @@ const MainView = () => (
       <SearchBarContainer />
       <div className="appCols">
         <PlayerContainer />
-        <DragDropList />
+        <DragDropListContainer />
       </div>
     </div>
   </div>

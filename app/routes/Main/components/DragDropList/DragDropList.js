@@ -1,12 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import ListItem from './ListItem';
 import styles from './dragDropListStyles.scss';
 
-const getItems = count =>
-  Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k}`,
-    content: `item ${k}`
-  }));
+// const getItems = count =>
+//   Array.from({ length: count }, (v, k) => k).map(k => ({
+//     id: `item-${k}`,
+//     videoId: '',
+//     content: `item ${k}`
+//   }));
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -14,17 +17,6 @@ const reorder = (list, startIndex, endIndex) => {
   result.splice(endIndex, 0, removed);
 
   return result;
-};
-
-const getItemStyle = (isDragging, draggableStyle) => {
-  const { transform } = draggableStyle;
-  const style = {
-    userSelect: 'none',
-    padding: 15,
-    margin: '0 0 1px 0',
-    background: isDragging ? 'rgb(181, 169, 169)' : 'rgb(197, 186, 186)'
-  };
-  return transform ? { ...style, ...draggableStyle } : style;
 };
 
 const getListStyle = isDraggingOver => ({
@@ -36,32 +28,29 @@ const getListStyle = isDraggingOver => ({
 class DragDropList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      items: getItems(11)
-    };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
 
   onDragEnd(result) {
-    const { items: itemsOri } = this.state;
+    const { onDragEnd, videoList: itemsOri } = this.props;
     // dropped outside the list
     if (!result.destination) {
       return;
     }
 
-    const items = reorder(
+    const videoList = reorder(
       itemsOri,
       result.source.index,
       result.destination.index
     );
-
-    this.setState({
-      items
-    });
+    onDragEnd(videoList);
   }
 
   render() {
-    const { items } = this.state;
+    const { onSwitchVideo, videoList: items } = this.props;
+    // if (items.length === 0) {
+    //   return null;
+    // }
     return (
       <div className={styles.containerDragDropList}>
         <DragDropContext onDragEnd={this.onDragEnd}>
@@ -74,18 +63,12 @@ class DragDropList extends React.Component {
                 {items.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id} index={index}>
                     {(provided2, snapshot2) => (
-                      <div
-                        className={styles.box}
-                        ref={provided2.innerRef}
-                        {...provided2.draggableProps}
-                        {...provided2.dragHandleProps}
-                        style={getItemStyle(
-                          snapshot2.isDragging,
-                          provided2.draggableProps.style
-                        )}
-                      >
-                        {item.content}
-                      </div>
+                      <ListItem
+                        item={item}
+                        provided={provided2}
+                        snapshot={snapshot2}
+                        onSwitchVideo={onSwitchVideo}
+                      />
                     )}
                   </Draggable>
                 ))}
@@ -99,4 +82,15 @@ class DragDropList extends React.Component {
   }
 }
 
+DragDropList.propTypes = {
+  videoList: PropTypes.arrayOf(PropTypes.object),
+  onDragEnd: PropTypes.func,
+  onSwitchVideo: PropTypes.func,
+};
+
+DragDropList.defaultProps ={
+  videoList: [],
+  onDragEnd: () => {},
+  onSwitchVideo: () => {},
+};
 export default DragDropList;

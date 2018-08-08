@@ -25,6 +25,8 @@ const store = new Store({
     }
   }
 });
+// console.log('app:', app.getPath('userData'));
+// console.log(store.path);
 
 let mainWindow = null;
 
@@ -91,7 +93,7 @@ app.on('ready', async () => {
 
   // @TODO: Use 'ready-to-show' event
   //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
-  mainWindow.webContents.once('did-finish-load', () => {
+  mainWindow.webContents.on('did-finish-load', () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }

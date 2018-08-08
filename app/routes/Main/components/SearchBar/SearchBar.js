@@ -20,9 +20,8 @@ class SearchBar extends React.Component {
     console.log('videoId:', videoId);
     onSwitchVideo(videoId);
   }
-
   render() {
-    console.log('searchBar');
+    const { onAddVideoToList, onSaveVideoList } = this.props;
     const { input } = this.state;
     return (
       <div className={styles.containerSearchBar}>
@@ -35,17 +34,22 @@ class SearchBar extends React.Component {
           placeholder="Input youtube link"
         />
         <button onClick={this.onEnter}>ENTER</button>
-        <button>+</button>
+        <button onClick={onAddVideoToList}>+</button>
+        <button onClick={onSaveVideoList}>SAVE</button>
       </div>
     );
   }
 }
 SearchBar.defaultProps = {
-  onSwitchVideo: () => {}
+  onSwitchVideo: () => {},
+  onAddVideoToList: () => {},
+  onSaveVideoList: () => {},
 };
 
 SearchBar.propTypes = {
-  onSwitchVideo: PropTypes.func
+  onSwitchVideo: PropTypes.func,
+  onAddVideoToList: PropTypes.func,
+  onSaveVideoList: PropTypes.func,
 };
 
 export default SearchBar;

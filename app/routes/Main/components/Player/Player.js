@@ -9,6 +9,7 @@ const opts = {
   height: 330,
   playerVars: {
     // https://developers.google.com/youtube/player_parameters
+    autoplay: 1,
     controls: 0,
     showinfo: 0,
     rel: 0,
@@ -21,7 +22,6 @@ const opts = {
 };
 const onEnd = ({ target }) => {
   target.playVideo();
-
 }
 const onStateChange = ({ data }) => {
   console.log('onStateChange:  ',data);
@@ -33,8 +33,8 @@ class Player extends React.Component {
     this.onReady = this.onReady.bind(this);
     this.onPlay = this.onPlay.bind(this);
     this.onPause = this.onPause.bind(this);
-    this.onPause = this.onPause.bind(this);
-    this.onChange = this.onChange.bind(this);
+    // this.onPause = this.onPause.bind(this);
+    // this.onChange = this.onChange.bind(this);
   }
   onReady({ target }) {
     this.player = target;
@@ -46,14 +46,14 @@ class Player extends React.Component {
   onPause() {
     this.player.pauseVideo();
   }
-  onChange() {
-    this.player.cueVideoById({
-        videoId: 'sg_WE0ToJjM',
-        // startSeconds: 10,
-        // endSeconds: 100,
-      });
-    this.player.playVideo();
-  }
+  // onChange() {
+  //   this.player.cueVideoById({
+  //       videoId: 'sg_WE0ToJjM',
+  //       // startSeconds: 100,
+  //       // endSeconds: 1000,
+  //     });
+  //   this.player.playVideo();
+  // }
   render() {
     const { videoId } = this.props;
     const paramsNavBar = {
