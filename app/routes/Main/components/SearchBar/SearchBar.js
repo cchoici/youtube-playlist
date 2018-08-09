@@ -8,9 +8,11 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: ''
+      input: '',
+      isAddToList: false,
     };
     this.onEnter = this.onEnter.bind(this);
+    this.onClickAdd = this.onClickAdd.bind(this);
   }
 
   onEnter() {
@@ -20,8 +22,14 @@ class SearchBar extends React.Component {
     console.log('videoId:', videoId);
     onSwitchVideo(videoId);
   }
+  onClickAdd() {
+    const { onClickAdd } = this.props;
+    const { isAddToList } = this.state;
+    this.setState({ isAddToList: !isAddToList });
+    onClickAdd(!isAddToList);
+  }
   render() {
-    const { onAddVideoToList, onSaveVideoList } = this.props;
+    const { onSaveVideoList } = this.props;
     const { input } = this.state;
     return (
       <div className={styles.containerSearchBar}>
@@ -34,7 +42,7 @@ class SearchBar extends React.Component {
           placeholder="Input youtube link"
         />
         <button onClick={this.onEnter}>ENTER</button>
-        <button onClick={onAddVideoToList}>+</button>
+        <button onClick={this.onClickAdd}>+</button>
         <button onClick={onSaveVideoList}>SAVE</button>
       </div>
     );
@@ -42,13 +50,13 @@ class SearchBar extends React.Component {
 }
 SearchBar.defaultProps = {
   onSwitchVideo: () => {},
-  onAddVideoToList: () => {},
+  onClickAdd: () => {},
   onSaveVideoList: () => {},
 };
 
 SearchBar.propTypes = {
   onSwitchVideo: PropTypes.func,
-  onAddVideoToList: PropTypes.func,
+  onClickAdd: PropTypes.func,
   onSaveVideoList: PropTypes.func,
 };
 

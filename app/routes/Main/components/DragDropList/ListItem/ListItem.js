@@ -37,7 +37,7 @@ class ListItem extends React.Component {
       >
         <span>
           <img alt='' src={`https://img.youtube.com/vi/${item.videoId}/1.jpg`} />
-          {item.videoId}
+          {item.title}
         </span>
         <button
           className={styles.btn}

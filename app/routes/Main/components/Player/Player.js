@@ -23,18 +23,30 @@ const opts = {
 const onEnd = ({ target }) => {
   target.playVideo();
 }
-const onStateChange = ({ data }) => {
-  console.log('onStateChange:  ',data);
-}
+
 class Player extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      info: {
+        videoId: null,
+        author: '',
+        title: '',
+      },
+    }
     this.player = null;
     this.onReady = this.onReady.bind(this);
     this.onPlay = this.onPlay.bind(this);
     this.onPause = this.onPause.bind(this);
     // this.onPause = this.onPause.bind(this);
-    // this.onChange = this.onChange.bind(this);
+    this.onStateChange = this.onStateChange.bind(this);
+  }
+  componentWillReceiveProps(nextProps) {
+    const { isAddToList, onAddVideoToList } = this.props;
+    if (nextProps.isAddToList && !isAddToList) {
+        onAddVideoToList(this.state.info);
+        // console.log(this.state.info);
+    }
   }
   onReady({ target }) {
     this.player = target;
@@ -45,6 +57,13 @@ class Player extends React.Component {
   }
   onPause() {
     this.player.pauseVideo();
+  }
+  onStateChange({ data }) {
+    console.log(data);
+    if (data === 1 ) {
+      const info = this.player.getVideoData();
+      this.setState({ info });
+    }
   }
   // onChange() {
   //   this.player.cueVideoById({
@@ -59,8 +78,8 @@ class Player extends React.Component {
     const paramsNavBar = {
       onPlay: this.onPlay,
       onPause: this.onPause,
-      onChange: this.onChange,
     }
+    console.log('ooooooooooooooooooooooo')
     return (
       <div className={styles.containerPlayer}>
         <YouTube
@@ -68,7 +87,7 @@ class Player extends React.Component {
           opts={opts}
           onReady={this.onReady}
           onEnd={onEnd}
-          onStateChange={onStateChange}
+          onStateChange={this.onStateChange}
         />
         <NavBar {...paramsNavBar} />
       </div>
@@ -77,12 +96,14 @@ class Player extends React.Component {
 }
 Player.propTypes = {
   videoId: PropTypes.string,
-  onChange: PropTypes.func,
+  isAddToList: PropTypes.bool,
+  onAddVideoToList: PropTypes.func,
 };
 
 Player.defaultProps = {
   videoId: null,
-  onChange: () => {},
+  isAddToList: false,
+  onAddVideoToList: () => {},
 };
 
 export default Player;

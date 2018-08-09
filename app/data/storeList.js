@@ -9,10 +9,13 @@ const storeList = new Store({
 
 export const addVideoItem = ({
   videoId,
+  title,
+  author,
 }) => ({
   id: videoId,
   videoId,
-  content: '',
+  title,
+  author,
 })
 
 
