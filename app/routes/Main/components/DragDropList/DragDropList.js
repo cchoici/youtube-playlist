@@ -47,7 +47,7 @@ class DragDropList extends React.Component {
   }
 
   render() {
-    const { onSwitchVideo, videoList: items } = this.props;
+    const { onSwitchVideo, onRemoveVideo, videoList: items } = this.props;
     // if (items.length === 0) {
     //   return null;
     // }
@@ -67,6 +67,7 @@ class DragDropList extends React.Component {
                         item={item}
                         provided={provided2}
                         snapshot={snapshot2}
+                        onRemoveVideo={onRemoveVideo}
                         onSwitchVideo={onSwitchVideo}
                       />
                     )}
@@ -86,11 +87,13 @@ DragDropList.propTypes = {
   videoList: PropTypes.arrayOf(PropTypes.object),
   onDragEnd: PropTypes.func,
   onSwitchVideo: PropTypes.func,
+  onRemoveVideo: PropTypes.func,
 };
 
 DragDropList.defaultProps ={
   videoList: [],
   onDragEnd: () => {},
   onSwitchVideo: () => {},
+  onRemoveVideo: () => {},
 };
 export default DragDropList;

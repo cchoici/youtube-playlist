@@ -28,11 +28,7 @@ class Player extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      info: {
-        videoId: null,
-        author: '',
-        title: '',
-      },
+      info: null,
     }
     this.player = null;
     this.onReady = this.onReady.bind(this);
@@ -43,9 +39,10 @@ class Player extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     const { isAddToList, onAddVideoToList } = this.props;
-    if (nextProps.isAddToList && !isAddToList) {
-        onAddVideoToList(this.state.info);
-        // console.log(this.state.info);
+    const { info } = this.state;
+    if (nextProps.isAddToList && !isAddToList && info) {
+        onAddVideoToList(info);
+        this.setState({ info: null });
     }
   }
   onReady({ target }) {
@@ -79,7 +76,6 @@ class Player extends React.Component {
       onPlay: this.onPlay,
       onPause: this.onPause,
     }
-    console.log('ooooooooooooooooooooooo')
     return (
       <div className={styles.containerPlayer}>
         <YouTube

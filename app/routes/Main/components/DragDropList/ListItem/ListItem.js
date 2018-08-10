@@ -16,7 +16,12 @@ const getItemStyle = (isDragging, draggableStyle) => {
 class ListItem extends React.Component {
   constructor(props) {
     super(props);
+    this.onRemoveVideo = this.onRemoveVideo.bind(this);
     this.onSwitchVideo = this.onSwitchVideo.bind(this);
+  }
+  onRemoveVideo() {
+    const { onRemoveVideo, item: { videoId } } = this.props;
+    onRemoveVideo({ videoId });
   }
   onSwitchVideo() {
     const { onSwitchVideo, item: { videoId } } = this.props;
@@ -39,12 +44,20 @@ class ListItem extends React.Component {
           <img alt='' src={`https://img.youtube.com/vi/${item.videoId}/1.jpg`} />
           {item.title}
         </span>
-        <button
-          className={styles.btn}
-          onClick={this.onSwitchVideo}
-        >
-          PlAY
-        </button>
+        <div className={styles.navGroup}>
+          <button
+            className={styles.btn}
+            onClick={this.onRemoveVideo}
+          >
+            X
+          </button>
+          <button
+            className={styles.btn}
+            onClick={this.onSwitchVideo}
+          >
+            PlAY
+          </button>
+        </div>
       </div>
     );
   }
@@ -55,6 +68,7 @@ ListItem.propTypes = {
   provided: PropTypes.shape({}),
   snapshot: PropTypes.shape({}),
   onSwitchVideo: PropTypes.func,
+  onRemoveVideo: PropTypes.func,
 };
 
 ListItem.defaultProps = {
@@ -62,5 +76,6 @@ ListItem.defaultProps = {
   provided: {},
   snapshot: {},
   onSwitchVideo: () => {},
+  onRemoveVideo: () => {},
 }
 export default ListItem;

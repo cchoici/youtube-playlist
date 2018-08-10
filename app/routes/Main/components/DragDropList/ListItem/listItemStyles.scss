@@ -7,24 +7,41 @@
   font-size: 12px;
   flex-direction: row;
   align-items: center;
+  overflow: hidden;
   > span {
     display: flex;
     flex: 1;
-    align-items: center;
+    align-items: left;
+    overflow: hidden;
+    height: 60px;
     img {
       width: 80px;
       margin-right: 8px;
     }
   }
-  .btn {
-    background: #928585;
-    color: #fff;
-    font-size: 10px;
-    display: inline-block;
-    padding: 2px 5px;
-    cursor: pointer;
-    border: 0;
-    height: 20px;
+  .navGroup {
+    display: flex;
+    height: 50px;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    .btn {
+      &:first-child {
+        background: transparent;
+        color: #333;
+        padding-right: 10px;
+        align-self: flex-end;
+      }
+      background: #928585;
+      align-self: stretch;
+      color: #fff;
+      font-size: 10px;
+      display: inline-block;
+      padding: 2px 5px;
+      cursor: pointer;
+      border: 0;
+      height: 20px;
+    }
   }
 }
 
