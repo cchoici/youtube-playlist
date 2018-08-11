@@ -7,12 +7,10 @@ export const mapStateToProps = ({
     videoId,
     isAddToList,
   },
-}) => {
-  console.log('ggyy:': isAddToList);
-  return {
+}) => ({
   videoId,
   isAddToList,
-}};
+});
 
 export const mapDispatchToProps = dispatch => ({
   onAddVideoToList: ({ videoId, author, title }) => {

@@ -12,7 +12,7 @@ const NavBar = ({
     <button type="button" onClick={onPlay}>
         Play
     </button>
-    <SeekBar {...props} />
+    <SeekBar onPlay={onPlay} onPause={onPause} {...props} />
     <button type="button" onClick={onPause}>
         Pause
     </button>

@@ -37,6 +37,7 @@ class Player extends React.Component {
     this.onReady = this.onReady.bind(this);
     this.onPlay = this.onPlay.bind(this);
     this.onPause = this.onPause.bind(this);
+    this.onSeek = this.onSeek.bind(this);
     this.onProgress = this.onProgress.bind(this);
     this.onStateChange = this.onStateChange.bind(this);
   }
@@ -60,16 +61,20 @@ class Player extends React.Component {
   onProgress() {
     const currentTime = this.player.getCurrentTime();
     const duration = this.player.getDuration();
-    console.log(currentTime);
     this.setState({ duration, currentTime });
     this.progressTimeout = setTimeout(this.onProgress, 1000);
   }
   onPlay() {
-   this.player.playVideo();
-
+    // const { currentTime } = this.state;
+    // this.player.seekTo(currentTime);
+    this.player.playVideo();
   }
   onPause() {
     this.player.pauseVideo();
+  }
+  onSeek({ currentTime }) {
+    this.player.seekTo(currentTime);
+    this.setState({ currentTime });
   }
   onStateChange({ data }) {
     console.log(data);
@@ -92,6 +97,7 @@ class Player extends React.Component {
     const paramsNavBar = {
       onPlay: this.onPlay,
       onPause: this.onPause,
+      onSeek: this.onSeek,
       duration,
       currentTime,
     }
