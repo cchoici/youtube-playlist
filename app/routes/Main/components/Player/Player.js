@@ -40,7 +40,7 @@ class Player extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { isAddToList, onAddVideoToList } = this.props;
     const { info } = this.state;
-    if (nextProps.isAddToList && !isAddToList && info) {
+    if ((nextProps.isAddToList !== isAddToList) && info) {
         onAddVideoToList(info);
         this.setState({ info: null });
     }
