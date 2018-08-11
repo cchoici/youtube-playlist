@@ -5,6 +5,7 @@
 	justify-content: center;
 	button {
 		margin: 3px 0px;
+    /* set icon className is not workable on global overwrite...so set style attr instead */
 	}
   > div {
     flex: 1;

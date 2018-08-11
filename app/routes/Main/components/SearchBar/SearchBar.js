@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MdSearch, MdAdd, MdSave } from 'react-icons/md';
+import { ICON_STYLES } from '../../../../constants/config';
 import styles from './searchBarStyles.scss';
 
 const MATCH_URL = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})/;
@@ -41,9 +43,9 @@ class SearchBar extends React.Component {
           }}
           placeholder="Input youtube link"
         />
-        <button onClick={this.onEnter}>ENTER</button>
-        <button onClick={this.onClickAdd}>+</button>
-        <button onClick={onSaveVideoList}>SAVE</button>
+        <button onClick={this.onEnter}><MdSearch style={ICON_STYLES} /></button>
+        <button onClick={this.onClickAdd}><MdAdd style={ICON_STYLES} /></button>
+        <button onClick={onSaveVideoList}><MdSave style={ICON_STYLES} /></button>
       </div>
     );
   }
