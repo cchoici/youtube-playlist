@@ -29,14 +29,18 @@ class Player extends React.Component {
     super(props);
     this.state = {
       info: null,
+      currentTime: 0,
+
     }
     this.player = null;
+    this.progressTimeout = null;
     this.onReady = this.onReady.bind(this);
     this.onPlay = this.onPlay.bind(this);
     this.onPause = this.onPause.bind(this);
-    // this.onPause = this.onPause.bind(this);
+    this.onProgress = this.onProgress.bind(this);
     this.onStateChange = this.onStateChange.bind(this);
   }
+  
   componentWillReceiveProps(nextProps) {
     const { isAddToList, onAddVideoToList } = this.props;
     const { info } = this.state;
@@ -45,12 +49,24 @@ class Player extends React.Component {
         this.setState({ info: null });
     }
   }
+  componentWillUnmount() {
+    clearTimeout(this.progressTimeout);
+  }
   onReady({ target }) {
     this.player = target;
     this.onPlay();
+    this.onProgress();
+  }
+  onProgress() {
+    const currentTime = this.player.getCurrentTime();
+    const duration = this.player.getDuration();
+    console.log(currentTime);
+    this.setState({ duration, currentTime });
+    this.progressTimeout = setTimeout(this.onProgress, 1000);
   }
   onPlay() {
    this.player.playVideo();
+
   }
   onPause() {
     this.player.pauseVideo();
@@ -72,9 +88,12 @@ class Player extends React.Component {
   // }
   render() {
     const { videoId } = this.props;
+    const { duration, currentTime } = this.state;
     const paramsNavBar = {
       onPlay: this.onPlay,
       onPause: this.onPause,
+      duration,
+      currentTime,
     }
     return (
       <div className={styles.containerPlayer}>
@@ -103,3 +122,28 @@ Player.defaultProps = {
 };
 
 export default Player;
+
+// seekTo (amount) {
+//     this.callPlayer('seekTo', amount)
+//   }
+//   setVolume (fraction) {
+//     this.callPlayer('setVolume', fraction * 100)
+//   }
+//   mute = () => {
+//     this.callPlayer('mute')
+//   }
+//   unmute = () => {
+//     this.callPlayer('unMute')
+//   }
+//   setPlaybackRate (rate) {
+//     this.callPlayer('setPlaybackRate', rate)
+//   }
+//   getDuration () {
+//     return this.callPlayer('getDuration')
+//   }
+//   getCurrentTime () {
+//     return this.callPlayer('getCurrentTime')
+//   }
+//   getSecondsLoaded () {
+//     return this.callPlayer('getVideoLoadedFraction') * this.getDuration()
+//   }

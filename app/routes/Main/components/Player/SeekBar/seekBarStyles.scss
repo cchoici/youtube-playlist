@@ -1,0 +1,95 @@
+@import "./range-mixins.scss";
+
+.seekBarContainer {
+  margin: 0 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  input: {
+    margin: 0;
+    padding: 0;
+  }
+  span {
+    font-size: 10px;
+    color: #333;
+    white-space: nowrap;
+  }
+}
+
+input[type="range"] {
+  // reset inputs to a plain state
+  @include -range__reset(webkit, moz, ms);
+
+  $track-height: 10px;
+  $track-lower-color: #e8e3e3;
+  $track-upper-color: #ae9e9e;
+
+  $thumb-height: 10px;
+  $thumb-width: 10px;
+  $thumb-color: #ae9e9e;
+
+  width: 100%;
+  height: 12px;
+  // padding: 0 12px;
+  margin: 0;
+  background-color: transparent;
+
+  &:hover,
+  &:active {
+    @include -range-thumb(webkit, moz, ms) {
+      transform: scale(1.25);
+    }
+  }
+
+  @include -range-thumb(webkit) {
+    position: relative;
+    top: -1px;
+  }
+
+  @include -range-track(webkit, moz, ms) {
+    width: 100%;
+    height: $track-height;
+    border: 0;
+    cursor: pointer;
+    background-color: $track-upper-color;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  // so we can style the lower progress
+  &::-webkit-slider-container {
+    background-size: inherit;
+  }
+
+  @include -range-track(webkit) {
+    background: {
+      image: linear-gradient($track-lower-color, $track-lower-color);
+      size: inherit;
+      repeat: no-repeat;
+    }
+    border-radius: $track-height/2;
+    border: 1px #ae9e9e solid;
+  }
+
+  @include -range-fill-lower(webkit, moz, ms) {
+    background-color: $track-lower-color;
+  }
+
+  @include -range-thumb(webkit, moz, ms) {
+    width: $thumb-width;
+    height: $thumb-height;
+    border: 0;
+    border-radius: 50%;
+    background-color: $thumb-color;
+    cursor: grab;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 150ms ease-out;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
