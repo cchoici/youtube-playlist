@@ -41,13 +41,13 @@ html, body {
 }
 
 #appContent{
-  padding: 15px;
+  padding: 8px 15px;
   .appCols {
     display: flex;
     flex-direction: row;
     overflow: hidden;
     height: 360px;
-    margin: 10px 0;
+    margin: 10px 0 0 0;
     color: #fff;
   }
   

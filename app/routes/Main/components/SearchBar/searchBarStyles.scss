@@ -3,9 +3,16 @@
     flex-direction: row;
     input {
 	  flex: 1;
+    border: 1px #c5baba solid;
+    border-right-width: 0;
 	  padding: 5px 10px;
 	}
 	button {
 	  margin-left: 10px;
+    &.btnSearch {
+      margin-left: 0;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
 	}
 }

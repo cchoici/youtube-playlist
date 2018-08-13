@@ -28,25 +28,26 @@ class SeekBar extends React.Component {
   render() {
     const {
       style,
-      onRnageMouseUp,
+      onRangeMouseUp,
       onRangeMouseDown,
       rangeTotal,
       rangeCurrent,
-      isShowTime,
+      type,
     } = this.props;
     return (
       <div className={styles.seekBarContainer} style={style}>
         <input
           type="range"
+          typestyle={type}
           step="any"
           max={Math.round(rangeTotal)}
           value={rangeCurrent}
           onMouseDown={onRangeMouseDown}
-          onMouseUp={onRnageMouseUp}
+          onMouseUp={onRangeMouseUp}
           onChange={this.onSeekChange}
           className={styles.seekBar}
         />
-        {isShowTime && (
+        {type === 'TIME' && (
           <span>
             {`${formatTime(Math.round(rangeCurrent))} / ${formatTime(Math.round(rangeTotal))}`}
           </span>
@@ -58,22 +59,22 @@ class SeekBar extends React.Component {
 
 SeekBar.defaultProps = {
   style: {},
-  onRnageMouseUp: () => {},
+  onRangeMouseUp: () => {},
   onRangeMouseDown: () => {},
   onRangeSeek: () => {},
   rangeTotal: 0,
   rangeCurrent: 0,
-  isShowTime: false,
+  type: 'TIME',
 };
 
 SeekBar.propTypes = {
   style: PropTypes.shape({}),
-  onRnageMouseUp: PropTypes.func,
+  onRangeMouseUp: PropTypes.func,
   onRangeMouseDown: PropTypes.func,
   onRangeSeek: PropTypes.func,
   rangeTotal: PropTypes.number,
   rangeCurrent: PropTypes.number,
-  isShowTime: PropTypes.bool,
+  type: PropTypes.oneOf(['TIME', 'VOLUME']),
 };
 
 export default SeekBar;

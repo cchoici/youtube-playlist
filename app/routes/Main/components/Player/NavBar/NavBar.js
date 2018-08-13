@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdPause, MdPlayArrow } from 'react-icons/md';
+import { MdPause, MdPlayArrow, MdVolumeUp, MdVolumeOff } from 'react-icons/md';
 import { ICON_STYLES } from '../../../../../constants/config';
 import SeekBar from '../SeekBar';
 import styles from './navBarStyles.scss';
@@ -25,25 +25,27 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       isPlay: true,
+      isMute: false,
     }
     this.onPlayOrPause = this.onPlayOrPause.bind(this);
+    this.onMute = this.onMute.bind(this);
   }
   onPlayOrPause() {
-    const {
-      onPlay,
-      onPause,
-    } = this.props;
+    const { onPlay, onPause } = this.props;
     const { isPlay } = this.state;
     this.setState({ isPlay: !isPlay });
     (isPlay ? onPause : onPlay)();
 
   }
+  onMute() {
+    const { onMute } = this.props;
+    const { isMute } = this.state;
+    this.setState({ isMute: !isMute });
+    onMute({ isMute });
+  }
   render () {
-    const {
-      paramsTime,
-      paramsVolume,
-    } = this.props;
-    const { isPlay } = this.state;
+    const { paramsTime, paramsVolume } = this.props;
+    const { isPlay, isMute } = this.state;
     return (
       <div className={styles.containerNavBar}>
         <button type="button" onClick={this.onPlayOrPause}>
@@ -52,7 +54,13 @@ class NavBar extends React.Component {
             : <MdPlayArrow style={ICON_STYLES} />
           }
         </button>
-        <SeekBar isShowTime {...paramsTime} />
+        <SeekBar {...paramsTime} />
+        <button type="button" onClick={this.onMute}>
+          {isMute 
+            ? <MdVolumeUp style={ICON_STYLES} />
+            : <MdVolumeOff style={ICON_STYLES} />
+          }
+        </button>
         <SeekBar {...paramsVolume} />
       </div>
     );
@@ -64,6 +72,7 @@ NavBar.propTypes = {
   paramsVolume: PropTypes.shape(rangeTypes),
   onPlay: PropTypes.func,
   onPause: PropTypes.func,
+  onMute: PropTypes.func,
 };
 
 NavBar.defaultProps = {
@@ -71,6 +80,7 @@ NavBar.defaultProps = {
   paramsVolume: {...rangeDefault},
   onPlay: () => {},
   onPause: () => {},
+  onMute: () => {},
 };
 
 export default NavBar;

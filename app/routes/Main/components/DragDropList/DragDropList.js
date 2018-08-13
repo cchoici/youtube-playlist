@@ -21,8 +21,8 @@ const reorder = (list, startIndex, endIndex) => {
 
 const getListStyle = isDraggingOver => ({
   backgroundColor: isDraggingOver ? 'rgba(255, 255, 255, 0.6)' : 'transparent',
-  padding: 10,
-  width: 260
+  padding: '0 10px',
+  width: 275,
 });
 
 class DragDropList extends React.Component {

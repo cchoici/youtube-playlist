@@ -9,7 +9,7 @@ const volumeWidth = 50;
 
 const opts = {
   width: 580,
-  height: 330,
+  height: 325,
   playerVars: {
     // https://developers.google.com/youtube/player_parameters
     autoplay: 1,
@@ -42,6 +42,7 @@ class Player extends React.Component {
     this.onPlay = this.onPlay.bind(this);
     this.onPause = this.onPause.bind(this);
     this.onSeek = this.onSeek.bind(this);
+    this.onMute = this.onMute.bind(this);
     this.onSetVolume = this.onSetVolume.bind(this);
     this.onProgress = this.onProgress.bind(this);
     this.onStateChange = this.onStateChange.bind(this);
@@ -85,6 +86,14 @@ class Player extends React.Component {
     this.player.setVolume(rangeCurrent * volumeWidth / 100);
     this.setState({ volume: rangeCurrent });
   }
+  onMute({ isMute }) {
+    if (!this.player) return;
+    if (isMute) {
+      this.player.mute();
+    } else {
+      this.player.unMute();
+    }
+  }
   onStateChange({ data }) {
     console.log(data);
     if (data === 1 ) {
@@ -106,7 +115,9 @@ class Player extends React.Component {
     const paramsNavBar = {
       onPlay: this.onPlay,
       onPause: this.onPause,
+      onMute: this.onMute,
       paramsTime: {
+        type: 'TIME',
         onRangeMouseUp: this.onPlay,
         onRangeMouseDown: this.onPause,
         onRangeSeek: this.onSeek,
@@ -114,6 +125,7 @@ class Player extends React.Component {
         rangeCurrent: currentTime,
       },
       paramsVolume: {
+        type: 'VOLUME',
         style: { width: volumeWidth, flex: 'inherit' },
         onRangeSeek: this.onSetVolume,
         rangeTotal: 100,
@@ -149,12 +161,8 @@ Player.defaultProps = {
 
 export default Player;
 
-// seekTo (amount) {
-//     this.callPlayer('seekTo', amount)
-//   }
-//   setVolume (fraction) {
-//     this.callPlayer('setVolume', fraction * 100)
-//   }
+
+
 //   mute = () => {
 //     this.callPlayer('mute')
 //   }
@@ -163,12 +171,6 @@ export default Player;
 //   }
 //   setPlaybackRate (rate) {
 //     this.callPlayer('setPlaybackRate', rate)
-//   }
-//   getDuration () {
-//     return this.callPlayer('getDuration')
-//   }
-//   getCurrentTime () {
-//     return this.callPlayer('getCurrentTime')
 //   }
 //   getSecondsLoaded () {
 //     return this.callPlayer('getVideoLoadedFraction') * this.getDuration()

@@ -43,7 +43,7 @@ class SearchBar extends React.Component {
           }}
           placeholder="Input youtube link"
         />
-        <button onClick={this.onEnter}><MdSearch style={ICON_STYLES} /></button>
+        <button onClick={this.onEnter} className={styles.btnSearch}><MdSearch style={ICON_STYLES} /></button>
         <button onClick={this.onClickAdd}><MdAdd style={ICON_STYLES} /></button>
         <button onClick={onSaveVideoList}><MdSave style={ICON_STYLES} /></button>
       </div>
