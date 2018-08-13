@@ -1,3 +1,7 @@
 .containerPlayer {
-	flex: 1,
+	flex: 1;
+  .containerVolume {
+    width: 100px !important;
+    flex: inherit !important;
+  }
 }

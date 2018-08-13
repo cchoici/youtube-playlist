@@ -4,6 +4,9 @@ import YouTube from 'react-youtube';
 import NavBar from './NavBar';
 import styles from './playerStyles.scss';
 
+const volumeWidth = 50;
+
+
 const opts = {
   width: 580,
   height: 330,
@@ -30,6 +33,7 @@ class Player extends React.Component {
     this.state = {
       info: null,
       currentTime: 0,
+      volume: 50,
 
     }
     this.player = null;
@@ -38,6 +42,7 @@ class Player extends React.Component {
     this.onPlay = this.onPlay.bind(this);
     this.onPause = this.onPause.bind(this);
     this.onSeek = this.onSeek.bind(this);
+    this.onSetVolume = this.onSetVolume.bind(this);
     this.onProgress = this.onProgress.bind(this);
     this.onStateChange = this.onStateChange.bind(this);
   }
@@ -72,9 +77,13 @@ class Player extends React.Component {
   onPause() {
     this.player.pauseVideo();
   }
-  onSeek({ currentTime }) {
-    this.player.seekTo(currentTime);
-    this.setState({ currentTime });
+  onSeek({ rangeCurrent }) {
+    this.player.seekTo(rangeCurrent);
+    this.setState({ currentTime: rangeCurrent });
+  }
+  onSetVolume({ rangeCurrent }) {
+    this.player.setVolume(rangeCurrent * volumeWidth / 100);
+    this.setState({ volume: rangeCurrent });
   }
   onStateChange({ data }) {
     console.log(data);
@@ -93,13 +102,24 @@ class Player extends React.Component {
   // }
   render() {
     const { videoId } = this.props;
-    const { duration, currentTime } = this.state;
+    const { duration, currentTime, volume } = this.state;
     const paramsNavBar = {
       onPlay: this.onPlay,
       onPause: this.onPause,
-      onSeek: this.onSeek,
-      duration,
-      currentTime,
+      paramsTime: {
+        onRangeMouseUp: this.onPlay,
+        onRangeMouseDown: this.onPause,
+        onRangeSeek: this.onSeek,
+        rangeTotal: duration,
+        rangeCurrent: currentTime,
+      },
+      paramsVolume: {
+        style: { width: volumeWidth, flex: 'inherit' },
+        onRangeSeek: this.onSetVolume,
+        rangeTotal: 100,
+        rangeCurrent: volume,
+      },
+
     }
     return (
       <div className={styles.containerPlayer}>

@@ -15,62 +15,65 @@ class SeekBar extends React.Component {
     this.onSeekChange = this.onSeekChange.bind(this);
   }
   
-  shouldComponentUpdate({ duration, currentTime }) {
+  shouldComponentUpdate({ rangeTotal, rangeCurrent }) {
     return (
-      duration !== this.props.duration ||
-      currentTime !== this.props.currentTime
+      rangeTotal !== this.props.rangeTotal ||
+      rangeCurrent !== this.props.rangeCurrent
     );
   }
-  // onSeekMouseUp({ target: { value } }) {
-  //   console.log('up:', value);
-
-  // }
   onSeekChange({ target: { value } }) {
-    const { onSeek } = this.props;
-    onSeek({ currentTime: value });
+    const { onRangeSeek } = this.props;
+    onRangeSeek({ rangeCurrent: value });
   }
   render() {
     const {
-      onPlay,
-      onPause,
-      duration,
-      currentTime,
+      style,
+      onRnageMouseUp,
+      onRangeMouseDown,
+      rangeTotal,
+      rangeCurrent,
+      isShowTime,
     } = this.props;
     return (
-      <div className={styles.seekBarContainer}>
+      <div className={styles.seekBarContainer} style={style}>
         <input
           type="range"
           step="any"
-          max={duration.toFixed(2)}
-          value={currentTime}
-          onMouseDown={onPause}
-          onMouseUp={(onPlay)}
+          max={Math.round(rangeTotal)}
+          value={rangeCurrent}
+          onMouseDown={onRangeMouseDown}
+          onMouseUp={onRnageMouseUp}
           onChange={this.onSeekChange}
           className={styles.seekBar}
-          style={{}}
         />
-        <span>
-          {`${formatTime(Math.round(currentTime))} / ${formatTime(Math.round(duration))}`}
-        </span>
+        {isShowTime && (
+          <span>
+            {`${formatTime(Math.round(rangeCurrent))} / ${formatTime(Math.round(rangeTotal))}`}
+          </span>
+        )}
       </div>
     );
   }
 }
 
 SeekBar.defaultProps = {
-  onPlay: () => {},
-  onPause: () => {},
-  onSeek: () => {},
-  duration: 0,
-  currentTime: 0,
+  style: {},
+  onRnageMouseUp: () => {},
+  onRangeMouseDown: () => {},
+  onRangeSeek: () => {},
+  rangeTotal: 0,
+  rangeCurrent: 0,
+  isShowTime: false,
 };
 
 SeekBar.propTypes = {
-  onPlay: PropTypes.func,
-  onPause: PropTypes.func,
-  onSeek: PropTypes.func,
-  duration: PropTypes.number,
-  currentTime: PropTypes.number,
+  style: PropTypes.shape({}),
+  onRnageMouseUp: PropTypes.func,
+  onRangeMouseDown: PropTypes.func,
+  onRangeSeek: PropTypes.func,
+  rangeTotal: PropTypes.number,
+  rangeCurrent: PropTypes.number,
+  isShowTime: PropTypes.bool,
 };
 
 export default SeekBar;
