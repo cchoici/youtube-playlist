@@ -1,12 +1,26 @@
 import { connect } from 'react-redux';
+import { remote } from 'electron';
 import { saveVideoList } from '../modules/main';
 import MainView from '../components/MainView';
 
-export const mapStateToProps = () => ({});
+const closeWindow = () => {
+  const win = remote.getCurrentWindow();
+  win.close();
+};
+const minimizeWindow = () => {
+  const win = remote.getCurrentWindow();
+  win.minimize();
+};
 
-export const mapDispatchToProps = dispatch => ({
-  onSaveVideoList: () => {
-    dispatch(saveVideoList());
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = dispatch => ({
+  onCloseWindow: () => (
+    dispatch(saveVideoList())
+      .then(() => closeWindow())
+  ),
+  onMinimizeWindow: () => {
+    minimizeWindow();
   },
 });
 

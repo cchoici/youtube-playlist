@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import ListItem from './ListItem';
+import NavBar from './NavBar';
 import styles from './dragDropListStyles.scss';
 
 // const getItems = count =>
@@ -46,32 +47,36 @@ class DragDropList extends React.Component {
     //   return null;
     // }
     return (
-      <div className={styles.containerDragDropList}>
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable droppableId="droppable">
-            {(provided) => (
-              <div
-                ref={provided.innerRef}
-                className={styles.dragDropList}
-              >
-                {items.map((item, index) => (
-                  <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {(provided2, snapshot2) => (
-                      <ListItem
-                        item={item}
-                        provided={provided2}
-                        snapshot={snapshot2}
-                        onRemoveVideo={onRemoveVideo}
-                        onSwitchVideo={onSwitchVideo}
-                      />
-                    )}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
+      <div>
+        <NavBar />
+        <div className={styles.containerDragDropList}>
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <Droppable droppableId="droppable">
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  className={styles.dragDropList}
+                >
+                  {items.map((item, index) => (
+                    <Draggable key={item.id} draggableId={item.id} index={index}>
+                      {(provided2, snapshot2) => (
+                        <ListItem
+                          item={item}
+                          provided={provided2}
+                          snapshot={snapshot2}
+                          onRemoveVideo={onRemoveVideo}
+                          onSwitchVideo={onSwitchVideo}
+                        />
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
+        
       </div>
     );
   }

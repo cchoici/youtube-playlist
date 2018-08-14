@@ -9,7 +9,7 @@ const volumeWidth = 50;
 
 
 const opts = {
-  width: 600,
+  width: '100%',
   height: 325,
   playerVars: {
     // https://developers.google.com/youtube/player_parameters
