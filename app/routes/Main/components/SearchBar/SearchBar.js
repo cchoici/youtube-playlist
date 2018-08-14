@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdSearch, MdAdd, MdSave } from 'react-icons/md';
+import { MdSearch, MdAdd, MdFavorite} from 'react-icons/md';
 import { ICON_STYLES } from '../../../../constants/config';
 import styles from './searchBarStyles.scss';
 
@@ -31,7 +31,6 @@ class SearchBar extends React.Component {
     onClickAdd(!isAddToList);
   }
   render() {
-    const { onSaveVideoList } = this.props;
     const { input } = this.state;
     return (
       <div className={styles.containerSearchBar}>
@@ -44,8 +43,8 @@ class SearchBar extends React.Component {
           placeholder="Input youtube link"
         />
         <button onClick={this.onEnter} className={styles.btnSearch}><MdSearch style={ICON_STYLES} /></button>
-        <button onClick={this.onClickAdd}><MdAdd style={ICON_STYLES} /></button>
-        <button onClick={onSaveVideoList}><MdSave style={ICON_STYLES} /></button>
+        <button onClick={this.onClickAdd}><MdAdd style={ICON_STYLES} /><MdFavorite style={ICON_STYLES} /></button>
+        <div className={styles.space} />
       </div>
     );
   }
@@ -53,13 +52,11 @@ class SearchBar extends React.Component {
 SearchBar.defaultProps = {
   onSwitchVideo: () => {},
   onClickAdd: () => {},
-  onSaveVideoList: () => {},
 };
 
 SearchBar.propTypes = {
   onSwitchVideo: PropTypes.func,
   onClickAdd: PropTypes.func,
-  onSaveVideoList: PropTypes.func,
 };
 
 export default SearchBar;

@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './listItemStyles.scss';
 
+
 const getItemStyle = (isDragging, draggableStyle) => {
   const { transform } = draggableStyle;
   const style = {
     userSelect: 'none',
     padding: '2px 0',
     margin: '0 0 1px 0',
-    background: isDragging ? 'rgb(209, 199, 199)' : 'rgb(232, 227, 227)'
+    background: isDragging ? '#e8e3e3' : '#f4f1f1'
   };
   return transform ? { ...style, ...draggableStyle } : style;
 };

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setMain, saveVideoList } from '../modules/main';
+import { setMain } from '../modules/main';
 import SearchBar from '../components/SearchBar';
 
 export const mapStateToProps = () => ({});
@@ -10,9 +10,6 @@ export const mapDispatchToProps = dispatch => ({
   },
   onClickAdd: (isAddToList) => {
     dispatch(setMain({ isAddToList }));
-  },
-  onSaveVideoList: () => {
-    dispatch(saveVideoList());
   },
 });
 

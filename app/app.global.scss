@@ -4,6 +4,10 @@ html, body {
   overflow: hidden;
   
 }
+* {
+  box-sizing: border-box;
+  outline: none;
+}
 #app {
   font-family: Segoe UI;
   background: #efefef;
@@ -14,45 +18,6 @@ html, body {
   display: flex;
   flex-direction: column;
 }
-
-#appHeader {
-  display: flex;
-  align-self: stretch;
-  flex-direction: row-reverse;
-  border-bottom: 1px #ccc solid;
-  -webkit-app-region: drag;
-  cursor: grab;
-  button {
-    color: #666;
-    background: transparent;
-    border: none;
-    /*font-family: Arial;*/
-    font-size: 12px;
-    padding: 10px 15px;
-    opacity: 0.6;
-    font-weight: bold;
-    text-decoration: none;
-    -webkit-app-region: no-drag;
-    cursor: pointer;
-    &:hover{
-      background: #fff;
-    }
-  }
-}
-
-#appContent{
-  padding: 8px 15px;
-  .appCols {
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    height: 360px;
-    margin: 10px 0 0 0;
-    color: #fff;
-  }
-  
-}
-
 /* app scroller */
 ::-webkit-scrollbar {
   width: 6px;

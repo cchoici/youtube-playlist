@@ -1,16 +1,15 @@
 import * as React from 'react';
-
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route, Switch } from 'react-router';
-import MainView from './routes/Main/components/MainView';
+import MainViewContainer from './routes/Main/containers/MainViewContainer';
 
 const App = ({ store, history }) => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route path="/" component={MainView} />
+        <Route path="/" component={MainViewContainer} />
       </Switch>
     </ConnectedRouter>
   </Provider>

@@ -19,12 +19,6 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-const getListStyle = isDraggingOver => ({
-  backgroundColor: isDraggingOver ? 'rgba(255, 255, 255, 0.6)' : 'transparent',
-  padding: '0 10px',
-  width: 275,
-});
-
 class DragDropList extends React.Component {
   constructor(props) {
     super(props);
@@ -55,10 +49,10 @@ class DragDropList extends React.Component {
       <div className={styles.containerDragDropList}>
         <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="droppable">
-            {(provided, snapshot) => (
+            {(provided) => (
               <div
                 ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}
+                className={styles.dragDropList}
               >
                 {items.map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id} index={index}>

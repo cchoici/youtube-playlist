@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
 import NavBar from './NavBar';
+import SearchBarContainer from '../../containers/SearchBarContainer';
 import styles from './playerStyles.scss';
 
 const volumeWidth = 50;
 
 
 const opts = {
-  width: 580,
+  width: 600,
   height: 325,
   playerVars: {
     // https://developers.google.com/youtube/player_parameters
@@ -60,6 +61,7 @@ class Player extends React.Component {
     clearTimeout(this.progressTimeout);
   }
   onReady({ target }) {
+    console.log('player ready');
     this.player = target;
     this.onPlay();
     this.onProgress();
@@ -135,6 +137,7 @@ class Player extends React.Component {
     }
     return (
       <div className={styles.containerPlayer}>
+        <SearchBarContainer />
         <YouTube
           videoId={videoId}
           opts={opts}
@@ -160,18 +163,3 @@ Player.defaultProps = {
 };
 
 export default Player;
-
-
-
-//   mute = () => {
-//     this.callPlayer('mute')
-//   }
-//   unmute = () => {
-//     this.callPlayer('unMute')
-//   }
-//   setPlaybackRate (rate) {
-//     this.callPlayer('setPlaybackRate', rate)
-//   }
-//   getSecondsLoaded () {
-//     return this.callPlayer('getVideoLoadedFraction') * this.getDuration()
-//   }
