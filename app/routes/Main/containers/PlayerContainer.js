@@ -1,21 +1,26 @@
 import { connect } from 'react-redux';
-import { addVideoToList } from '../modules/main';
+import { addVideoToList, playNextVideo } from '../modules/main';
 import Player from '../components/Player';
 
 export const mapStateToProps = ({
   main: {
     videoId,
     isAddToList,
+    loopType,
   },
 }) => ({
   videoId,
   isAddToList,
+  loopType,
 });
 
 export const mapDispatchToProps = dispatch => ({
   onAddVideoToList: (info) => {
     dispatch(addVideoToList(info));
   },
+  onPlayNextVideo: () => {
+    dispatch(playNextVideo());
+  }
 });
 
 export default connect(

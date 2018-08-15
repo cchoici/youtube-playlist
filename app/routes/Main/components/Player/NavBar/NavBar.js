@@ -46,7 +46,6 @@ class NavBar extends React.Component {
   render () {
     const { paramsTime, paramsVolume } = this.props;
     const { isPlay, isUnMute } = this.state;
-    console.log('isUnMute:',isUnMute);
     return (
       <div className={styles.containerNavBar}>
         <button type="button" onClick={this.onPlayOrPause}>

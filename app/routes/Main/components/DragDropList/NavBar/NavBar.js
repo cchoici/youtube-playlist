@@ -14,24 +14,19 @@ const ICON_STYLES = {
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      typeRepeat: false,
-    }
-    this.onPlay = this.onPlay.bind(this);
+    this.onLoopChange = this.onLoopChange.bind(this);
   }
-  onPlay() {
-    const { onPlay } = this.props;
-    const { typeRepeat } = this.state;
-    this.setState({ typeRepeat: !typeRepeat });
-    onPlay();
+  onLoopChange() {
+    const { onLoopChange, loopType } = this.props;
+    onLoopChange(loopType);
   }
   render () {
-    const { typeRepeat } = this.state;
+    const { loopType } = this.props;
     return (
       <div className={styles.containerNavBar}>
         <div className={styles.space} />
-        <button type="button" onClick={this.onPlay}>
-          {typeRepeat 
+        <button type="button" onClick={this.onLoopChange}>
+          {loopType === 'ALL' 
             ? <MdRepeat style={ICON_STYLES} />
             : <MdRepeatOne style={ICON_STYLES} />
           }
@@ -42,11 +37,12 @@ class NavBar extends React.Component {
 }
 
 NavBar.propTypes = {
-  onPlay: PropTypes.func,
+  loopType: PropTypes.oneOf(['SINGLE', 'ALL']).isRequired,
+  onLoopChange: PropTypes.func,
 };
 
 NavBar.defaultProps = {
-  onPlay: () => {},
+  onLoopChange: () => {},
 };
 
 export default NavBar;

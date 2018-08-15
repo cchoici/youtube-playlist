@@ -24,9 +24,6 @@ const opts = {
     iv_load_policy: 3
   }
 };
-const onEnd = ({ target }) => {
-  target.playVideo();
-}
 
 class Player extends React.Component {
   constructor(props) {
@@ -47,11 +44,11 @@ class Player extends React.Component {
     this.onSetVolume = this.onSetVolume.bind(this);
     this.onProgress = this.onProgress.bind(this);
     this.onStateChange = this.onStateChange.bind(this);
+    this.onEnd = this.onEnd.bind(this);
   }
   
   componentWillReceiveProps({isAddToList}) {
     const { info } = this.state;
-    console.log('player get isAddToList:', isAddToList, '   ', this.props.isAddToList);
     if (isAddToList) {
         this.props.onAddVideoToList(info);
         this.setState({ info: null });
@@ -103,6 +100,14 @@ class Player extends React.Component {
       this.setState({ info });
     }
   }
+  onEnd() {
+    const { loopType, onPlayNextVideo } = this.props;
+    if ( loopType === 'SINGLE') {
+      this.onPlay();
+    } else {
+      onPlayNextVideo();
+    }
+  }
   // onChange() {
   //   this.player.cueVideoById({
   //       videoId: 'sg_WE0ToJjM',
@@ -141,7 +146,7 @@ class Player extends React.Component {
           videoId={videoId}
           opts={opts}
           onReady={this.onReady}
-          onEnd={onEnd}
+          onEnd={this.onEnd}
           onStateChange={this.onStateChange}
         />
         <NavBar {...paramsNavBar} />
@@ -150,15 +155,19 @@ class Player extends React.Component {
   }
 }
 Player.propTypes = {
+  loopType: PropTypes.oneOf(['SINGLE', 'ALL']),
   videoId: PropTypes.string,
   isAddToList: PropTypes.bool,
   onAddVideoToList: PropTypes.func,
+  onPlayNextVideo: PropTypes.func,
 };
 
 Player.defaultProps = {
+  loopType: 'SINGLE',
   videoId: null,
   isAddToList: false,
   onAddVideoToList: () => {},
+  onPlayNextVideo: () => {},
 };
 
 export default Player;

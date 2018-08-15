@@ -5,12 +5,23 @@ import DragDropList from '../components/DragDropList';
 export const mapStateToProps = ({
   main: {
     videoList,
+    loopType,
   },
 }) => ({
   videoList,
+  loopType,
 });
 
 export const mapDispatchToProps = dispatch => ({
+  onLoopChange: (loopType) => {
+    switch(loopType) {
+      case 'SINGLE':
+        dispatch(setMain({ loopType: 'ALL'}));
+        break;
+      default:
+        dispatch(setMain({ loopType: 'SINGLE'}));
+    }
+  },
   onDragEnd: (items) => {
     dispatch(setMain({ videoList: items }));
   },
