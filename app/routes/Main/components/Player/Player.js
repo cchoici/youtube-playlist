@@ -49,11 +49,11 @@ class Player extends React.Component {
     this.onStateChange = this.onStateChange.bind(this);
   }
   
-  componentWillReceiveProps(nextProps) {
-    const { isAddToList, onAddVideoToList } = this.props;
+  componentWillReceiveProps({isAddToList}) {
     const { info } = this.state;
-    if ((nextProps.isAddToList !== isAddToList) && info) {
-        onAddVideoToList(info);
+    console.log('player get isAddToList:', isAddToList, '   ', this.props.isAddToList);
+    if (isAddToList) {
+        this.props.onAddVideoToList(info);
         this.setState({ info: null });
     }
   }
@@ -88,9 +88,9 @@ class Player extends React.Component {
     this.player.setVolume(rangeCurrent * volumeWidth / 100);
     this.setState({ volume: rangeCurrent });
   }
-  onMute({ isMute }) {
+  onMute({ isUnMute }) {
     if (!this.player) return;
-    if (isMute) {
+    if (isUnMute) {
       this.player.mute();
     } else {
       this.player.unMute();
@@ -133,8 +133,7 @@ class Player extends React.Component {
         rangeTotal: 100,
         rangeCurrent: volume,
       },
-
-    }
+    };
     return (
       <div className={styles.containerPlayer}>
         <SearchBarContainer />

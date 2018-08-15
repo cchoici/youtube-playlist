@@ -13,8 +13,8 @@ export const mapStateToProps = ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  onAddVideoToList: ({ videoId, author, title }) => {
-    dispatch(addVideoToList({ videoId, author, title }));
+  onAddVideoToList: (info) => {
+    dispatch(addVideoToList(info));
   },
 });
 

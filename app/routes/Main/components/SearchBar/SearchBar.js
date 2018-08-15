@@ -11,7 +11,6 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       input: '',
-      isAddToList: false,
     };
     this.onEnter = this.onEnter.bind(this);
     this.onClickAdd = this.onClickAdd.bind(this);
@@ -21,13 +20,10 @@ class SearchBar extends React.Component {
     const { onSwitchVideo } = this.props;
     const { input } = this.state;
     const videoId = input && input.match(MATCH_URL)[1];
-    console.log('videoId:', videoId);
     onSwitchVideo(videoId);
   }
   onClickAdd() {
-    const { onClickAdd } = this.props;
-    const { isAddToList } = this.state;
-    this.setState({ isAddToList: !isAddToList });
+    const { onClickAdd, isAddToList } = this.props;
     onClickAdd(!isAddToList);
   }
   render() {
@@ -50,11 +46,13 @@ class SearchBar extends React.Component {
   }
 }
 SearchBar.defaultProps = {
+  isAddToList: false,
   onSwitchVideo: () => {},
   onClickAdd: () => {},
 };
 
 SearchBar.propTypes = {
+  isAddToList: PropTypes.bool,
   onSwitchVideo: PropTypes.func,
   onClickAdd: PropTypes.func,
 };

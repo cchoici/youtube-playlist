@@ -25,7 +25,7 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       isPlay: true,
-      isMute: false,
+      isUnMute: true,
     }
     this.onPlayOrPause = this.onPlayOrPause.bind(this);
     this.onMute = this.onMute.bind(this);
@@ -39,13 +39,14 @@ class NavBar extends React.Component {
   }
   onMute() {
     const { onMute } = this.props;
-    const { isMute } = this.state;
-    this.setState({ isMute: !isMute });
-    onMute({ isMute });
+    const { isUnMute } = this.state;
+    this.setState({ isUnMute: !isUnMute });
+    onMute({ isUnMute });
   }
   render () {
     const { paramsTime, paramsVolume } = this.props;
-    const { isPlay, isMute } = this.state;
+    const { isPlay, isUnMute } = this.state;
+    console.log('isUnMute:',isUnMute);
     return (
       <div className={styles.containerNavBar}>
         <button type="button" onClick={this.onPlayOrPause}>
@@ -56,7 +57,7 @@ class NavBar extends React.Component {
         </button>
         <SeekBar {...paramsTime} />
         <button type="button" onClick={this.onMute}>
-          {isMute 
+          {isUnMute 
             ? <MdVolumeUp style={ICON_STYLES} />
             : <MdVolumeOff style={ICON_STYLES} />
           }
