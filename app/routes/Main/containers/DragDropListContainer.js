@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setMain, removeVideo } from '../modules/main';
+import { setMain, removeVideo, playVideo } from '../modules/main';
 import DragDropList from '../components/DragDropList';
 
 export const mapStateToProps = ({
@@ -18,7 +18,7 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(removeVideo({ videoId }));
   },
   onSwitchVideo: ({ videoId }) => {
-    dispatch(setMain({ videoId }));
+    dispatch(playVideo({ videoId }));
   },
 });
 

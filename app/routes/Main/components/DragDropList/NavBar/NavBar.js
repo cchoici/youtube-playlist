@@ -6,7 +6,7 @@ import styles from './navBarStyles.scss';
 const ICON_STYLES = {
   width: 20,
   height: 20,
-  color: '#666',
+  color: '#222',
   verticalAlign: 'middle',
 };
 

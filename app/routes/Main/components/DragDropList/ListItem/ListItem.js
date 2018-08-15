@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MdPlayCircleFilled, MdPlayCircleOutline } from "react-icons/md";
+import { ICON_STYLES } from '../../../../../constants/config';
 import styles from './listItemStyles.scss';
 
 
@@ -56,7 +58,11 @@ class ListItem extends React.Component {
             className={styles.btn}
             onClick={this.onSwitchVideo}
           >
-            PlAY
+            {
+              item.isPlay
+              ? <MdPlayCircleFilled style={{ ...ICON_STYLES, width: 20, height: 20 }} />
+              : <MdPlayCircleOutline style={{ ...ICON_STYLES, width: 20, height: 20 }} />
+            }
           </button>
         </div>
       </div>
