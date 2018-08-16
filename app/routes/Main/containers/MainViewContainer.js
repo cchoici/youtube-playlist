@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { remote } from 'electron';
-import { saveVideoList } from '../modules/main';
+import { remote, ipcRenderer } from 'electron';
+import { setMain, savePlayerData } from '../modules/main';
 import MainView from '../components/MainView';
 
 const closeWindow = () => {
@@ -11,16 +11,32 @@ const minimizeWindow = () => {
   const win = remote.getCurrentWindow();
   win.minimize();
 };
+const playWindow = (mode) => {
+  const win = remote.getCurrentWindow();
+  ipcRenderer.send(mode, win.getPosition());
+};
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({
+  main: {
+    winMode,
+  }
+}) => ({
+  winMode,
+});
 
 const mapDispatchToProps = dispatch => ({
   onCloseWindow: () => (
-    dispatch(saveVideoList())
+
+    dispatch(savePlayerData())
       .then(() => closeWindow())
   ),
   onMinimizeWindow: () => {
     minimizeWindow();
+  },
+  onPlayWindow: (mode) => {
+    const winMode = mode === 'PLAYER' ? 'NORMAL' : 'PLAYER';
+    dispatch(setMain({ winMode }));
+    playWindow(`${winMode.toLowerCase()}-mode`);
   },
 });
 

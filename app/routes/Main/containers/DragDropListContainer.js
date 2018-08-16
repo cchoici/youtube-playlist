@@ -4,10 +4,12 @@ import DragDropList from '../components/DragDropList';
 
 export const mapStateToProps = ({
   main: {
+    winMode,
     videoList,
     loopType,
   },
 }) => ({
+  visible: winMode === 'NORMAL' ? !false : false,
   videoList,
   loopType,
 });

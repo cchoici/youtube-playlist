@@ -43,12 +43,14 @@ class DragDropList extends React.Component {
 
   render() {
     const {
+      visible,
       loopType,
       onLoopChange,
       onSwitchVideo,
       onRemoveVideo,
       videoList: items,
     } = this.props;
+    if (!visible) return null;
     return (
       <div>
         <NavBar loopType={loopType} onLoopChange={onLoopChange} />
@@ -86,6 +88,7 @@ class DragDropList extends React.Component {
 }
 
 DragDropList.propTypes = {
+  visible: PropTypes.bool,
   loopType: PropTypes.oneOf(['SINGLE', 'ALL']),
   onLoopChange: PropTypes.func,
   videoList: PropTypes.arrayOf(PropTypes.object),
@@ -94,7 +97,8 @@ DragDropList.propTypes = {
   onRemoveVideo: PropTypes.func,
 };
 
-DragDropList.defaultProps ={
+DragDropList.defaultProps = {
+  visible: true,
   loopType: 'SINGLE',
   onLoopChange: () => {},
   videoList: [],

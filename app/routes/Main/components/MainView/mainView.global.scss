@@ -23,7 +23,7 @@
   }
 }
 #appContent{
-  padding: 0 15px 8px 15px;
+  padding: 0 10px 8px 10px;
   .appCols {
     display: flex;
     flex-direction: row;
@@ -31,5 +31,14 @@
     height: 400px;
     margin: 5px 0 0 0;
     color: #fff;
-  } 
+    &.playerMode {
+      height: 160px;
+    }
+  }
+  &.playerMode {
+    padding: 0;
+    .appCols {
+      height: 180px;
+    }   
+  }
 }

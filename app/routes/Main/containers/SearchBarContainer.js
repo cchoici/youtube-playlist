@@ -3,8 +3,12 @@ import { setMain } from '../modules/main';
 import SearchBar from '../components/SearchBar';
 
 export const mapStateToProps = ({
-  main: { isAddToList }
+  main: {
+    winMode,
+    isAddToList
+  }
 }) => ({
+  visible: winMode === 'NORMAL'? !false : false,
   isAddToList,
 });
 

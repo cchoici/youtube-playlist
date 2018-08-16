@@ -1,5 +1,9 @@
 .containerPlayer {
-	flex: 1;
+	display: flex;
+  flex-direction: column;
+  .playerWrapper{
+    flex: 1;
+  }
   .containerVolume {
     width: 100px !important;
     flex: inherit !important;

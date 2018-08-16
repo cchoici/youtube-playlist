@@ -27,7 +27,10 @@ class SearchBar extends React.Component {
     onClickAdd(!isAddToList);
   }
   render() {
+    const { visible } = this.props;
     const { input } = this.state;
+    console.log('visible:', visible);
+    if (!visible) return null;
     return (
       <div className={styles.containerSearchBar}>
         <input
@@ -46,12 +49,14 @@ class SearchBar extends React.Component {
   }
 }
 SearchBar.defaultProps = {
+  visible: true,
   isAddToList: false,
   onSwitchVideo: () => {},
   onClickAdd: () => {},
 };
 
 SearchBar.propTypes = {
+  visible: PropTypes.bool,
   isAddToList: PropTypes.bool,
   onSwitchVideo: PropTypes.func,
   onClickAdd: PropTypes.func,

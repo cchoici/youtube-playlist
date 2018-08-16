@@ -10,14 +10,14 @@ const volumeWidth = 50;
 
 const opts = {
   width: '100%',
-  height: 325,
+  height: '100%',
   playerVars: {
     // https://developers.google.com/youtube/player_parameters
     autoplay: 1,
     controls: 0,
     showinfo: 0,
     rel: 0,
-    playsinline: 1,
+    playsinline: 0,
     modestbranding: 1,
     // loop: 1,
     fs: 0,
@@ -79,7 +79,7 @@ class Player extends React.Component {
   }
   onSeek({ rangeCurrent }) {
     this.player.seekTo(rangeCurrent);
-    this.setState({ currentTime: rangeCurrent });
+    this.setState({ currentTime: Number(rangeCurrent) });
   }
   onSetVolume({ rangeCurrent }) {
     this.player.setVolume(rangeCurrent * volumeWidth / 100);
@@ -108,14 +108,6 @@ class Player extends React.Component {
       onPlayNextVideo();
     }
   }
-  // onChange() {
-  //   this.player.cueVideoById({
-  //       videoId: 'sg_WE0ToJjM',
-  //       // startSeconds: 100,
-  //       // endSeconds: 1000,
-  //     });
-  //   this.player.playVideo();
-  // }
   render() {
     const { videoId } = this.props;
     const { duration, currentTime, volume } = this.state;
@@ -142,13 +134,15 @@ class Player extends React.Component {
     return (
       <div className={styles.containerPlayer}>
         <SearchBarContainer />
-        <YouTube
-          videoId={videoId}
-          opts={opts}
-          onReady={this.onReady}
-          onEnd={this.onEnd}
-          onStateChange={this.onStateChange}
-        />
+        <div className={styles.playerWrapper}>
+          <YouTube
+            videoId={videoId}
+            opts={opts}
+            onReady={this.onReady}
+            onEnd={this.onEnd}
+            onStateChange={this.onStateChange}
+          />
+        </div>
         <NavBar {...paramsNavBar} />
       </div>
     );

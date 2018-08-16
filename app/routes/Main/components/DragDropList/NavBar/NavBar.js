@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdRepeat, MdRepeatOne } from 'react-icons/md';
+import { MdRepeat, MdRepeatOne, MdSettings } from 'react-icons/md';
 import styles from './navBarStyles.scss';
+import { ICON_STYLES } from '../../../../../constants/config';
 
-const ICON_STYLES = {
+const ICON_CUSTOME_STYLES = {
   width: 20,
   height: 20,
   color: '#222',
@@ -27,10 +28,11 @@ class NavBar extends React.Component {
         <div className={styles.space} />
         <button type="button" onClick={this.onLoopChange}>
           {loopType === 'ALL' 
-            ? <MdRepeat style={ICON_STYLES} />
-            : <MdRepeatOne style={ICON_STYLES} />
+            ? <MdRepeat style={ICON_CUSTOME_STYLES} />
+            : <MdRepeatOne style={ICON_CUSTOME_STYLES} />
           }
         </button>
+        <button type="button" onClick={() => {}} className="btnSetting"><MdSettings style={ICON_STYLES} /></button>   
       </div>
     );
   }

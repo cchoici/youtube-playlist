@@ -3,6 +3,7 @@ import Store from 'electron-store';
 const storeList = new Store({
   name: 'videoList',
   defaults: {
+    videoId: null,
     list: [],
   },
 });
@@ -20,10 +21,10 @@ export const addVideoItem = ({
 })
 
 
-export const getStoreList = () => storeList.get('list');
+export const getStoreList = (key) => storeList.get(key);
 
-export const setStoreList = (arr) => {
-  storeList.set('list', arr);
+export const setStoreList = (key, arr) => {
+  storeList.set(key, arr);
 };
 
 export const clearStoreList = () => {

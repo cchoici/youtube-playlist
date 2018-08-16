@@ -10,18 +10,21 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import electron from 'electron';
 import Store from 'electron-store';
 import MenuBuilder from './menu';
+
+const { app, ipcMain, BrowserWindow } = electron;
 
 const store = new Store({
   name: 'ui',
   defaults: {
+    winMode: 'NORMAL',
     windowBounds: {
       x: 0,
       y: 0,
-      width: 910,
-      height: 480
+      width: 900,
+      height: 480,
     }
   }
 });
@@ -58,6 +61,21 @@ const installExtensions = async () => {
 /**
  * Add event listeners...
  */
+ipcMain.on('player-mode', () => {
+  mainWindow.setAlwaysOnTop(true);
+  mainWindow.setVisibleOnAllWorkspaces(true);
+  mainWindow.setSize(300, 220, true);
+});
+ipcMain.on('normal-mode', (evt, pos) => {
+  const electronScreen = electron.screen;
+  const { width, height} = electronScreen.getPrimaryDisplay().workAreaSize;
+  const x = pos[0] + 900 > width ? width - 900 : pos[0];
+  const y = pos[1] + 480 > height ? height -480 : pos[1];
+  mainWindow.setAlwaysOnTop(false);
+  mainWindow.setVisibleOnAllWorkspaces(false);
+  mainWindow.setPosition(x, y);
+  mainWindow.setSize(900, 480, true);
+});
 
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
@@ -80,8 +98,6 @@ app.on('ready', async () => {
     y,
     width,
     height,
-    maxWidth: 910,
-    maxHeight: 480,
     resizable: false,
     maximizable: false,
     transparent: true,
