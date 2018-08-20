@@ -1,13 +1,13 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "electron-react-boilerplate",
+  "name": "youtube-playlist",
+  "productName": "YoutubePlaylist",
   "version": "1.0.0",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "description": "Electron application: Youtube Playlist",
   "main": "./main.prod.js",
   "author": {
-    "name": "C. T. Lin",
-    "email": "chentsulin@gmail.com",
-    "url": "https://github.com/chentsulin"
+    "name": "Eric.HH.Lee",
+    "email": "cc.ho.i.ci@gmail.com",
+    "url": "https://github.com/cchoici"
   },
   "scripts": {
     "electron-rebuild": "node -r babel-register ../internals/scripts/ElectronRebuild.js",
@@ -15,10 +15,20 @@
   },
   "license": "MIT",
   "dependencies": {
+    "electron-store": "^2.0.0",
     "classnames": "^2.2.6",
+    "history": "^4.7.2",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "react-beautiful-dnd": "^8.0.7",
     "react-icons": "^3.0.5",
     "react-youtube": "^7.6.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.6",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.2.0",
     "redux-actions": "^2.6.1"
   }
 }

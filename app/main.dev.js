@@ -29,7 +29,7 @@ const store = new Store({
   }
 });
 // console.log('app:', app.getPath('userData'));
-// console.log(store.path);
+console.log(store.path);
 
 let mainWindow = null;
 

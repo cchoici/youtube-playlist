@@ -29,7 +29,11 @@ class Player extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      info: null,
+      info: {
+        videoId: null,
+        author: '',
+        title: '',
+      },
       currentTime: 0,
       volume: 50,
 
@@ -51,7 +55,7 @@ class Player extends React.Component {
     const { info } = this.state;
     if (isAddToList) {
         this.props.onAddVideoToList(info);
-        this.setState({ info: null });
+        this.setState({ info: {} });
     }
   }
   componentWillUnmount() {
@@ -94,10 +98,14 @@ class Player extends React.Component {
     }
   }
   onStateChange({ data }) {
-    console.log(data);
     if (data === 1 ) {
-      const info = this.player.getVideoData();
-      this.setState({ info });
+      /* eslint-disable-next-line */
+      const { video_id, author, title } = this.player.getVideoData();
+      this.setState({ info: {
+        videoId: video_id,
+        author,
+        title,
+      } });
     }
   }
   onEnd() {

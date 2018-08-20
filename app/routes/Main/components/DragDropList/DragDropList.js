@@ -67,6 +67,7 @@ class DragDropList extends React.Component {
                       {(provided2, snapshot2) => (
                         <ListItem
                           item={item}
+                          key={`${item.id}_item`}
                           provided={provided2}
                           snapshot={snapshot2}
                           onRemoveVideo={onRemoveVideo}

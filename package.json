@@ -1,8 +1,8 @@
 {
   "name": "youtube-playlist",
-  "productName": "ElectronReact",
+  "productName": "YoutubePlaylist",
   "version": "0.13.3",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "description": "Electron application: Youtube Playlist",
   "scripts": {
     "build": "concurrently \"npm run build-main\" \"npm run build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --colors",
@@ -41,7 +41,7 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
+    "productName": "YoutubePlaylist",
     "appId": "org.develar.ElectronReact",
     "files": [
       "dist/",
@@ -84,28 +84,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chentsulin/electron-react-boilerplate.git"
+    "url": "git+https://github.com/chentsulin/youtube-playlist.git"
   },
   "author": {
-    "name": "C. T. Lin",
-    "email": "chentsulin@gmail.com",
-    "url": "https://github.com/chentsulin"
+    "name": "Eric.HH.Lee",
+    "email": "cc.ho.i.ci@gmail.com",
+    "url": "https://github.com/cchoici"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chentsulin/electron-react-boilerplate/issues"
+    "url": "https://github.com/cchoici/youtube-playlist/issues"
   },
   "keywords": [
     "electron",
+    "youtube",
     "react",
     "redux",
-    "flow",
     "sass",
     "webpack",
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/chentsulin/electron-react-boilerplate#readme",
+  "homepage": "https://github.com/cchoici/youtube-playlist#readme",
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/fileMock.js",

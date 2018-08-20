@@ -29,7 +29,6 @@ class SearchBar extends React.Component {
   render() {
     const { visible } = this.props;
     const { input } = this.state;
-    console.log('visible:', visible);
     if (!visible) return null;
     return (
       <div className={styles.containerSearchBar}>
