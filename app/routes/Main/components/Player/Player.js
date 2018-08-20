@@ -101,6 +101,7 @@ class Player extends React.Component {
     if (data === 1 ) {
       /* eslint-disable-next-line */
       const { video_id, author, title } = this.player.getVideoData();
+      console.log(this.player.getVideoData());
       this.setState({ info: {
         videoId: video_id,
         author,
