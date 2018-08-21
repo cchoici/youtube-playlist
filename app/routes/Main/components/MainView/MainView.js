@@ -5,6 +5,7 @@ import { MdClose, MdRemove, MdCallToAction, MdBrandingWatermark } from 'react-ic
 import DragDropListContainer from '../../containers/DragDropListContainer';
 import PlayerContainer from '../../containers/PlayerContainer';
 import { ICON_STYLES } from '../../../../constants/config';
+import icon from './icon.png';
 import './mainView.global.scss';
 
 class MainView extends React.Component {
@@ -22,12 +23,11 @@ class MainView extends React.Component {
       onCloseWindow,
       onMinimizeWindow,
     } = this.props;
-    console.log('winMode:', winMode);
     return (
       <div>
         <div id="appHeader">
-          <button type="button" onClick={onCloseWindow}><MdClose style={ICON_STYLES} /></button>
-          <button type="button" onClick={onMinimizeWindow}><MdRemove style={ICON_STYLES} /></button>
+          <img alt='app icon' src={icon} />
+          <div className='space'>YouTube Playlist</div>
           <button type="button" onClick={this.onPlayWindow}>
             {
               winMode ==='PLAYER'
@@ -35,6 +35,8 @@ class MainView extends React.Component {
               : <MdBrandingWatermark style={ICON_STYLES} />
             }
           </button>
+          <button type="button" onClick={onMinimizeWindow}><MdRemove style={ICON_STYLES} /></button>
+          <button type="button" onClick={onCloseWindow}><MdClose style={ICON_STYLES} /></button>
         </div>
         <div id="appContent" className={classNames({ 'playerMode': winMode === 'PLAYER'})}>
           <div className='appCols'>

@@ -61,9 +61,12 @@ const installExtensions = async () => {
 /**
  * Add event listeners...
  */
-ipcMain.on('player-mode', () => {
+ipcMain.on('player-mode', (evt, pos) => {
   mainWindow.setAlwaysOnTop(true);
+  const x = pos[0] + 600;
+  const y = pos[1];
   mainWindow.setVisibleOnAllWorkspaces(true);
+  mainWindow.setPosition(x, y);
   mainWindow.setSize(300, 220, true);
 });
 ipcMain.on('normal-mode', (evt, pos) => {
