@@ -33,6 +33,7 @@ class Player extends React.Component {
         videoId: null,
         author: '',
         title: '',
+        duration: 0,
       },
       currentTime: 0,
       volume: 50,
@@ -101,11 +102,12 @@ class Player extends React.Component {
     if (data === 1 ) {
       /* eslint-disable-next-line */
       const { video_id, author, title } = this.player.getVideoData();
-      console.log(this.player.getVideoData());
+     const duration = this.player.getDuration();
       this.setState({ info: {
         videoId: video_id,
         author,
         title,
+        duration,
       } });
     }
   }

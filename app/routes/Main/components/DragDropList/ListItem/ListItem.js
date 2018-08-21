@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MdPlayCircleFilled, MdPlayCircleOutline } from "react-icons/md";
 import { ICON_STYLES } from '../../../../../constants/config';
+import { formatTime } from '../../../../../utils/transfer';
 import styles from './listItemStyles.scss';
 
 
@@ -44,7 +45,12 @@ class ListItem extends React.Component {
         )}
       >
         <span>
-          <img alt='' src={`https://img.youtube.com/vi/${item.videoId}/1.jpg`} />
+          <div className={styles.imgContainer}>
+            <img alt='' src={`https://img.youtube.com/vi/${item.videoId}/1.jpg`} />
+            <span className={styles.bar}>
+              {formatTime(Math.round(item.duration || 0))}
+            </span>
+          </div>
           {item.title}
         </span>
         <div className={styles.navGroup}>
@@ -60,7 +66,7 @@ class ListItem extends React.Component {
           >
             {
               item.isPlay
-              ? <MdPlayCircleFilled style={{ ...ICON_STYLES, width: 20, height: 20 }} />
+              ? <MdPlayCircleFilled style={{ ...ICON_STYLES, width: 20, height: 20, color: '#b84747' }} />
               : <MdPlayCircleOutline style={{ ...ICON_STYLES, width: 20, height: 20 }} />
             }
           </button>

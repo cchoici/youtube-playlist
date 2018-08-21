@@ -4,4 +4,5 @@ export const ICON_STYLES = {
   color: '#666',
   verticalAlign: 'middle',
 }
-export const OTHERS = {};
+
+export const MATCH_URL = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})/;

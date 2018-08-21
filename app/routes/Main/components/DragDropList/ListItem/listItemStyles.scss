@@ -13,9 +13,20 @@
     align-items: left;
     overflow: hidden;
     height: 60px;
-    img {
-      width: 80px;
+    .imgContainer{
+      position: relative;
       margin-right: 8px;
+      .bar {
+        position: absolute;
+        bottom: 0; right: 0;
+        padding: 2px 5px 5px 5px;
+        color: #fff;
+        font-size: 10px;
+        background-color: rgba( 0, 0, 0, 0.6);
+      }
+      img {
+        width: 80px;
+      }
     }
   }
   .navGroup {

@@ -12,11 +12,13 @@ export const addVideoItem = ({
   videoId,
   title,
   author,
+  duration,
 }) => ({
   id: videoId,
   videoId,
   title,
   author,
+  duration,
   isPlay: true,
 })
 

@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MdSearch, MdAdd, MdFavorite} from 'react-icons/md';
-import { ICON_STYLES } from '../../../../constants/config';
+import { ICON_STYLES, MATCH_URL } from '../../../../constants/config';
 import styles from './searchBarStyles.scss';
-
-const MATCH_URL = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})/;
 
 class SearchBar extends React.Component {
   constructor(props) {
