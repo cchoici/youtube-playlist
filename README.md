@@ -1,16 +1,13 @@
 # <img src='./internals/img/youtubePlaylist.png' /> **YouTube-Playlist**
 
 <div align="center">
-<img src='https://img.shields.io/depfu/depfu/example-ruby.svg' />
-<img src='https://img.shields.io/badge/devDependencies-electron-green.svg' />
 <img src='https://img.shields.io/github/license/mashape/apistatus.svg' />
 <img src='https://img.shields.io/badge/PRs-welcome-red.svg' />
 </div>
 
+* **Based on Electron, React to build Desktop application**
+
 ## Introduction
-
-
-Desktop application,
 
 let you play your favorite YouTube music videos easily.
 
