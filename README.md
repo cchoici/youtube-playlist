@@ -1,8 +1,12 @@
 # <img src='./internals/img/youtubePlaylist.png' />
-![#f03c15](https://placehold.it/15/f03c15/000000?text=33333)**YouTube-Playlist**
+![#f03c15]**YouTube-Playlist**
 ```diff
   + this will be highlighted in green
   - this will be highlighted in red
+```
+```diff
++ this will be highlighted in green
+- this will be highlighted in red
 ```
 
 <div align="center">
