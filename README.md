@@ -1,22 +1,27 @@
 # <img src='./resources/youtubePlaylist.png' /> YouTube-Playlist 
 
 ## Introduction
+
 Desktop application, let you play your favorite music videos easily.
-Miniplayer supported, so playing it all day.
 
 <img src='./resources/player.png' />
 
+Miniplayer supported, so playing it all day.
+
 <img src='./resources/miniPlayer.png' />
 
-This is now version: 0.7.0, has many new features could be added. welcome PR.
+This is now version: **0.7.0**
+
+many new features could be added.
+
+**Welcome any suggestions or PR to me.**
 
 ## Getting Started
 
+** This project developed based on Electron-React-Boilerplate **
 
 
 ### Install
-
-** This project developed based on Electron-React-Boilerplate
 
 First, clone the repo via git:
 
@@ -52,6 +57,10 @@ Other platforms not to test...
 ```bash
 $ npm run package-win
 ```
+
+## Authors
+
+* **Hou-Hsi Lee**
 
 ## License
 
