@@ -46,6 +46,7 @@ class DragDropList extends React.Component {
       visible,
       loopType,
       onLoopChange,
+      onTriggerSetting,
       onSwitchVideo,
       onRemoveVideo,
       videoList: items,
@@ -53,7 +54,11 @@ class DragDropList extends React.Component {
     if (!visible) return null;
     return (
       <div>
-        <NavBar loopType={loopType} onLoopChange={onLoopChange} />
+        <NavBar
+          loopType={loopType}
+          onLoopChange={onLoopChange}
+          onTriggerSetting={onTriggerSetting}
+        />
         <div className={styles.containerDragDropList}>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable">
@@ -92,6 +97,7 @@ DragDropList.propTypes = {
   visible: PropTypes.bool,
   loopType: PropTypes.oneOf(['SINGLE', 'ALL']),
   onLoopChange: PropTypes.func,
+  onTriggerSetting: PropTypes.func,
   videoList: PropTypes.arrayOf(PropTypes.object),
   onDragEnd: PropTypes.func,
   onSwitchVideo: PropTypes.func,
@@ -102,6 +108,7 @@ DragDropList.defaultProps = {
   visible: true,
   loopType: 'SINGLE',
   onLoopChange: () => {},
+  onTriggerSetting: () => {},
   videoList: [],
   onDragEnd: () => {},
   onSwitchVideo: () => {},

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import ReactDrawer from 'react-drawer';
 import { MdClose, MdRemove, MdCallToAction, MdBrandingWatermark } from 'react-icons/md';
 import DragDropListContainer from '../../containers/DragDropListContainer';
 import PlayerContainer from '../../containers/PlayerContainer';
@@ -20,6 +21,7 @@ class MainView extends React.Component {
   render() {
     const {
       winMode,
+      isDrawerOpen,
       onCloseWindow,
       onMinimizeWindow,
     } = this.props;
@@ -44,6 +46,14 @@ class MainView extends React.Component {
             <DragDropListContainer />
           </div>
         </div>
+        <ReactDrawer
+          open={isDrawerOpen}
+          position="right"
+          onClose={() => {}}
+          noOverlay
+        >
+          Setting
+        </ReactDrawer>
       </div>
     );
   }
@@ -51,6 +61,7 @@ class MainView extends React.Component {
 
 MainView.propTypes = {
   winMode: PropTypes.oneOf(['NORMAL', 'PLAYER']),
+  isDrawerOpen: PropTypes.bool,
   onCloseWindow: PropTypes.func,
   onMinimizeWindow: PropTypes.func,
   onPlayWindow: PropTypes.func,
@@ -58,6 +69,7 @@ MainView.propTypes = {
 
 MainView.defaultProps = {
   winMode: 'NORMAL',
+  isDrawerOpen: true,
   onCloseWindow: () => {},
   onMinimizeWindow: () => {},
   onPlayWindow: () => {},

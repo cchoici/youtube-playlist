@@ -19,9 +19,11 @@ const playWindow = (mode) => {
 const mapStateToProps = ({
   main: {
     winMode,
+    isDrawerOpen,
   }
 }) => ({
   winMode,
+  isDrawerOpen,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -35,7 +37,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onPlayWindow: (mode) => {
     const winMode = mode === 'PLAYER' ? 'NORMAL' : 'PLAYER';
-    dispatch(setMain({ winMode }));
+    dispatch(setMain({ winMode, isDrawerOpen: false }));
     playWindow(`${winMode.toLowerCase()}-mode`);
   },
 });

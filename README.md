@@ -10,7 +10,7 @@
 
 ## Introduction
 
-No Ads, let's play your favorite YouTube videos looply easier.
+No Ads, let's play your favorite YouTube videos repeatedly easier.
 
 Miniplayer supported, so playing it all day on your screen.
 

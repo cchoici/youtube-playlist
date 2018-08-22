@@ -22,7 +22,7 @@ class NavBar extends React.Component {
     onLoopChange(loopType);
   }
   render () {
-    const { loopType } = this.props;
+    const { loopType, onTriggerSetting } = this.props;
     return (
       <div className={styles.containerNavBar}>
         <div className={styles.space} />
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
             : <MdRepeatOne style={ICON_CUSTOME_STYLES} />
           }
         </button>
-        <button type="button" onClick={() => {}} className="btnSetting"><MdSettings style={ICON_STYLES} /></button>   
+        <button type="button" onClick={onTriggerSetting} className="btnSetting"><MdSettings style={ICON_STYLES} /></button>   
       </div>
     );
   }
@@ -41,10 +41,12 @@ class NavBar extends React.Component {
 NavBar.propTypes = {
   loopType: PropTypes.oneOf(['SINGLE', 'ALL']).isRequired,
   onLoopChange: PropTypes.func,
+  onTriggerSetting: PropTypes.func,
 };
 
 NavBar.defaultProps = {
   onLoopChange: () => {},
+  onTriggerSetting: () => {},
 };
 
 export default NavBar;
