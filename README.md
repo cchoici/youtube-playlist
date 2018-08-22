@@ -1,4 +1,4 @@
-# <img src='./resources/youtubePlaylist.png' /> YouTube-Playlist 
+# <img src='./resources/youtubePlaylist.png' /> <span style="color:red">**YouTube-Playlist**</span>
 
 ## Introduction
 
@@ -51,8 +51,10 @@ $ npm run dev
 ### Packaging
 
 To package apps for the local platform:
+
 Right now app is workable to run on window platform.
-Other platforms not to test...
+
+No opportunity to test on other platforms.
 
 ```bash
 $ npm run package-win
