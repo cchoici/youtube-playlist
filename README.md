@@ -1,4 +1,4 @@
-# <img src='./internals/img/youtubePlaylist.png' align='bottom' /> **YouTube-Playlist**
+# <img src='./internals/img/youtubePlaylist.png' align='top' width='40' /> **YouTube-Playlist**
 
 
 <div align="center">
