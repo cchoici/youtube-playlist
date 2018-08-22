@@ -1,13 +1,10 @@
-```diff
-# <img src='./internals/img/youtubePlaylist.png' />
-- **YouTube-Playlist**
-```
+# <img src='./internals/img/youtubePlaylist.png' /> **YouTube-Playlist**
+
 
 <div align="center">
 <img src='https://img.shields.io/github/license/mashape/apistatus.svg' />
 <img src='https://img.shields.io/badge/PRs-welcome-red.svg' />
 </div>
-
 
 * **Based on Electron, React to build Desktop application**
 
