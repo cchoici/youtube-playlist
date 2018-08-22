@@ -1,12 +1,6 @@
+```diff
 # <img src='./internals/img/youtubePlaylist.png' />
-![#f03c15]**YouTube-Playlist**
-```diff
-  + this will be highlighted in green
-  - this will be highlighted in red
-```
-```diff
-+ this will be highlighted in green
-- this will be highlighted in red
+- **YouTube-Playlist**
 ```
 
 <div align="center">
