@@ -1,4 +1,6 @@
-# <img src='./internals/img/youtubePlaylist.png' /> **YouTube-Playlist**
+```html
+   # <img src='./internals/img/youtubePlaylist.png' /> <span style='color: red'>**YouTube-Playlist**</span>
+```
 
 <div align="center">
 <img src='https://img.shields.io/github/license/mashape/apistatus.svg' />
