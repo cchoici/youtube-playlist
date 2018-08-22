@@ -1,5 +1,11 @@
-# <img src='./resources/youtubePlaylist.png' /> **YouTube-Playlist**
+# <img src='./internals/img/youtubePlaylist.png' /> **YouTube-Playlist**
 
+<div align="center">
+<img src='https://img.shields.io/depfu/depfu/example-ruby.svg' />
+<img src='https://img.shields.io/badge/devDependencies-electron-green.svg' />
+<img src='https://img.shields.io/github/license/mashape/apistatus.svg' />
+<img src='https://img.shields.io/badge/PRs-welcome-red.svg' />
+</div>
 
 ## Introduction
 
@@ -8,12 +14,12 @@ Desktop application,
 
 let you play your favorite YouTube music videos easily.
 
-<img src='./resources/player.png' />
+<img src='./internals/img/player.png' />
 
 
 Miniplayer supported, so playing it all day.
 
-<img src='./resources/miniPlayer.png' />
+<img src='./internals/img/miniPlayer.png' />
 
 This is now version: **0.7.0**
 
@@ -31,7 +37,7 @@ many new features could be added.
 First, clone the repo via git:
 
 ```bash
-git clone --depth=1 https://github.com/cchoici/youtube-playlist.git
+git clone https://github.com/cchoici/youtube-playlist.git
 ```
 
 And then install dependencies with yarn.
