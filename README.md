@@ -1,4 +1,4 @@
-# <img src='./internals/img/youtubePlaylist.png' /> **YouTube-Playlist**
+# <img src='./internals/img/youtubePlaylist.png' align='middle' /> **YouTube-Playlist**
 
 
 <div align="center">
@@ -10,12 +10,11 @@
 
 ## Introduction
 
-let you play your favorite YouTube music videos easily.
+No Ads, let's play your favorite YouTube videos looply easier.
+
+Miniplayer supported, so playing it all day on your screen.
 
 <img src='./internals/img/player.png' />
-
-
-Miniplayer supported, so playing it all day.
 
 <img src='./internals/img/miniPlayer.png' />
 
