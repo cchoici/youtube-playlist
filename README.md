@@ -1,10 +1,15 @@
-# <img src='./resources/youtubePlaylist.png' /> <span style="color:red">**YouTube-Playlist**</span>
+# <img src='./resources/youtubePlaylist.png' /> **YouTube-Playlist**
+
 
 ## Introduction
 
-Desktop application, let you play your favorite music videos easily.
+
+Desktop application,
+
+let you play your favorite YouTube music videos easily.
 
 <img src='./resources/player.png' />
+
 
 Miniplayer supported, so playing it all day.
 
@@ -18,7 +23,7 @@ many new features could be added.
 
 ## Getting Started
 
-** This project developed based on Electron-React-Boilerplate **
+**This project developed based on Electron-React-Boilerplate**
 
 
 ### Install
