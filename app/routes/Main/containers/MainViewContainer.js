@@ -41,7 +41,6 @@ const mapDispatchToProps = dispatch => ({
     playWindow(`${winMode.toLowerCase()}-mode`);
   },
   onTriggerSetting: () => {
-    console.log('onTriggerSetting');
     dispatch(triggerSetting());
   },
 });

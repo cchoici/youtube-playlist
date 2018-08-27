@@ -45,7 +45,7 @@ class MainView extends React.Component {
         <Sidebar
           rootClassName="root"
           sidebarClassName="sidebar"
-          contentClassName={isDrawerOpen ? 'sidebarLeft' : false}
+          contentClassName={isDrawerOpen ? 'sidebarLeft' : undefined}
           sidebar={
             <div className='sidebarContainer'>
               <button type="button" onClick={onTriggerSetting}><MdClose style={ICON_STYLES} /></button>
