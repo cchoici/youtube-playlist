@@ -24,7 +24,7 @@ const store = new Store({
       x: 0,
       y: 0,
       width: 900,
-      height: 480,
+      height: 435,
     }
   }
 });
@@ -67,17 +67,17 @@ ipcMain.on('player-mode', (evt, pos) => {
   const y = pos[1];
   mainWindow.setVisibleOnAllWorkspaces(true);
   mainWindow.setPosition(x, y);
-  mainWindow.setSize(300, 220, true);
+  mainWindow.setSize(300, 208, true);
 });
 ipcMain.on('normal-mode', (evt, pos) => {
   const electronScreen = electron.screen;
   const { width, height} = electronScreen.getPrimaryDisplay().workAreaSize;
   const x = pos[0] + 900 > width ? width - 900 : pos[0];
-  const y = pos[1] + 480 > height ? height -480 : pos[1];
+  const y = pos[1] + 435 > height ? height -435 : pos[1];
   mainWindow.setAlwaysOnTop(false);
   mainWindow.setVisibleOnAllWorkspaces(false);
   mainWindow.setPosition(x, y);
-  mainWindow.setSize(900, 480, true);
+  mainWindow.setSize(900, 435, true);
 });
 
 app.on('window-all-closed', () => {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { remote, ipcRenderer } from 'electron';
-import { setMain, savePlayerData } from '../modules/main';
+import { setMain, savePlayerData, triggerSetting } from '../modules/main';
 import MainView from '../components/MainView';
 
 const closeWindow = () => {
@@ -39,6 +39,10 @@ const mapDispatchToProps = dispatch => ({
     const winMode = mode === 'PLAYER' ? 'NORMAL' : 'PLAYER';
     dispatch(setMain({ winMode, isDrawerOpen: false }));
     playWindow(`${winMode.toLowerCase()}-mode`);
+  },
+  onTriggerSetting: () => {
+    console.log('onTriggerSetting');
+    dispatch(triggerSetting());
   },
 });
 

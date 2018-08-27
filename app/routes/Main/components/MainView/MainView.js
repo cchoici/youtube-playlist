@@ -1,13 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import ReactDrawer from 'react-drawer';
+import Sidebar from 'react-sidebar';
 import { MdClose, MdRemove, MdCallToAction, MdBrandingWatermark } from 'react-icons/md';
 import DragDropListContainer from '../../containers/DragDropListContainer';
 import PlayerContainer from '../../containers/PlayerContainer';
 import { ICON_STYLES } from '../../../../constants/config';
 import icon from './icon.png';
 import './mainView.global.scss';
+
 
 class MainView extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class MainView extends React.Component {
       winMode,
       isDrawerOpen,
       onCloseWindow,
+      onTriggerSetting,
       onMinimizeWindow,
     } = this.props;
     return (
@@ -40,20 +42,28 @@ class MainView extends React.Component {
           <button type="button" onClick={onMinimizeWindow}><MdRemove style={ICON_STYLES} /></button>
           <button type="button" onClick={onCloseWindow}><MdClose style={ICON_STYLES} /></button>
         </div>
-        <div id="appContent" className={classNames({ 'playerMode': winMode === 'PLAYER'})}>
-          <div className='appCols'>
+        <Sidebar
+          rootClassName="root"
+          sidebarClassName="sidebar"
+          contentClassName={isDrawerOpen ? 'sidebarLeft' : false}
+          sidebar={
+            <div className='sidebarContainer'>
+              <button type="button" onClick={onTriggerSetting}><MdClose style={ICON_STYLES} /></button>
+            </div>
+          }
+          open={isDrawerOpen}
+          docked={isDrawerOpen}
+          transitions
+          pullRight
+          onSetOpen={onTriggerSetting}
+        >
+          <div id="appContent" className={classNames({ 'playerMode': winMode === 'PLAYER'})}>
+           
             <PlayerContainer />
             <DragDropListContainer />
+           
           </div>
-        </div>
-        <ReactDrawer
-          open={isDrawerOpen}
-          position="right"
-          onClose={() => {}}
-          noOverlay
-        >
-          Setting
-        </ReactDrawer>
+        </Sidebar>
       </div>
     );
   }
@@ -65,6 +75,7 @@ MainView.propTypes = {
   onCloseWindow: PropTypes.func,
   onMinimizeWindow: PropTypes.func,
   onPlayWindow: PropTypes.func,
+  onTriggerSetting: PropTypes.func,
 };
 
 MainView.defaultProps = {
@@ -73,6 +84,7 @@ MainView.defaultProps = {
   onCloseWindow: () => {},
   onMinimizeWindow: () => {},
   onPlayWindow: () => {},
+  onTriggerSetting: () => {},
 };
 
 export default MainView;

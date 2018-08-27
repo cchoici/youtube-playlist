@@ -1,5 +1,23 @@
-@import './react-drawer.css';
-
+@mixin customBg($color) {
+  background-color: $color;
+  -webkit-box-shadow: 0 3px 10px rgba(144, 127, 127, 0.2) inset;
+     -moz-box-shadow: 0 3px 10px rgba(144, 127, 127, 0.2) inset;
+          box-shadow: 0 3px 10px rgba(144, 127, 127, 0.2) inset;
+}
+.button {
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-weight: bold;
+  text-decoration: none;
+  -webkit-app-region: no-drag;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
 #appHeader {
   display: flex;
   padding-left: 12px;
@@ -10,9 +28,7 @@
   background-color: #222;
   -webkit-app-region: drag;
   border-radius: 5px 5px 0 0;
-  -webkit-box-shadow: 0 3px 10px rgba(144, 127, 127, 0.2) inset;
-     -moz-box-shadow: 0 3px 10px rgba(144, 127, 127, 0.2) inset;
-          box-shadow: 0 3px 10px rgba(144, 127, 127, 0.2) inset;
+  
   .space {
     flex: 1;
     padding-left: 5px;
@@ -23,41 +39,41 @@
 
   }
   button {
-    background: transparent;
-    border: none;
-    border-radius: 4px;
-    padding: 5px 8px;
-    font-weight: bold;
-    text-decoration: none;
-    -webkit-app-region: no-drag;
-    border-radius: 5px 5px 0 0;
-    cursor: pointer;
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
+    @extend .button;
     &.btnSetting {
       margin-right: 20px;
     }
   }
 }
-#appContent{
-  padding: 0 10px 8px 10px;
-  .appCols {
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    height: 400px;
-    // margin: 5px 0 0 0;
-    color: #fff;
-    &.playerMode {
-      height: 160px;
+.root{
+  top: 27px !important;
+  border-radius: 0 0 5px 5px;
+  .sidebar {
+    width: 285px;
+    .sidebarContainer {
+      @include customBg(#fff);
+      height: 408px;
+      button {
+        @extend .button;
+      }
     }
   }
+  .sidebarLeft {
+    left: -285px !important;
+  }
+}
+#appContent{
+  @include customBg(#efefef);
+  padding: 0 10px 8px 10px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  height: 408px;
+  color: #fff;
   &.playerMode {
     padding: 0;
-    .appCols {
-      height: 180px;
-    }   
+    height: 180px;
+    border-radius: 0 0 5px 5px;
   }
 }
 
