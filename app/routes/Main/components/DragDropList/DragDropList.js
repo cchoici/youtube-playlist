@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import ListItem from './ListItem';
 import NavBar from './NavBar';
+import TitleBar from './TitleBar';
 import styles from './dragDropListStyles.scss';
 
 // const getItems = count =>
@@ -53,13 +54,14 @@ class DragDropList extends React.Component {
     } = this.props;
     if (!visible) return null;
     return (
-      <div>
+      <div className={styles.containerWrapper}>
         <NavBar
           loopType={loopType}
           onLoopChange={onLoopChange}
           onTriggerSetting={onTriggerSetting}
         />
-        <div className={styles.containerDragDropList}>
+        <TitleBar />
+        <div className={styles.container}>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable">
               {(provided) => (

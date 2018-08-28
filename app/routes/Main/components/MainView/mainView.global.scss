@@ -1,8 +1,8 @@
-@mixin customBg($color) {
+@mixin customBg($color, $R, $G, $B, $A, $type) {
   background-color: $color;
-  -webkit-box-shadow: 0 3px 10px rgba(144, 127, 127, 0.2) inset;
-     -moz-box-shadow: 0 3px 10px rgba(144, 127, 127, 0.2) inset;
-          box-shadow: 0 3px 10px rgba(144, 127, 127, 0.2) inset;
+  -webkit-box-shadow: 0 3px 10px rgba($R, $G, $B, $A) $type;
+     -moz-box-shadow: 0 3px 10px rgba($R, $G, $B, $A) $type;
+          box-shadow: 0 3px 10px rgba($R, $G, $B, $A) $type;
 }
 .button {
   background: transparent;
@@ -25,7 +25,8 @@
   align-items: center;
   // flex-direction: row-reverse;
   border-bottom: 1px #000 solid;
-  background-color: #222;
+  background-color: #111;
+  @include customBg(#111, 200, 100, 100, 0.1, inset);
   -webkit-app-region: drag;
   border-radius: 5px 5px 0 0;
   
@@ -51,7 +52,7 @@
   .sidebar {
     width: 285px;
     .sidebarContainer {
-      @include customBg(#fff);
+      @include customBg(#fff, 144, 127, 127, 0.2, inset);
       height: 408px;
       button {
         @extend .button;
@@ -63,7 +64,7 @@
   }
 }
 #appContent{
-  @include customBg(#efefef);
+  @include customBg(#efefef, 144, 127, 127, 0.2, inset);
   padding: 0 10px 8px 10px;
   display: flex;
   flex-direction: row;

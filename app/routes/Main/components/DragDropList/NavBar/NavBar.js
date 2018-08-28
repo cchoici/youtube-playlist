@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdRepeat, MdRepeatOne, MdSettings } from 'react-icons/md';
+import { MdRepeat, MdRepeatOne, MdViewHeadline } from 'react-icons/md';
 import styles from './navBarStyles.scss';
-import { ICON_STYLES } from '../../../../../constants/config';
+// import { ICON_STYLES } from '../../../../../constants/config';
 
 const ICON_CUSTOME_STYLES = {
   width: 20,
@@ -32,7 +32,9 @@ class NavBar extends React.Component {
             : <MdRepeatOne style={ICON_CUSTOME_STYLES} />
           }
         </button>
-        <button type="button" onClick={onTriggerSetting} className="btnSetting"><MdSettings style={ICON_STYLES} /></button>   
+        <button type="button" onClick={onTriggerSetting} className="btnSetting">
+          <MdViewHeadline style={{...ICON_CUSTOME_STYLES, color: '#666' }} />
+        </button>   
       </div>
     );
   }

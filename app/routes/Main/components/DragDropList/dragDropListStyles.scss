@@ -1,11 +1,14 @@
-.containerDragDropList {
-  margin: 0;
-  width: 280px;
-  height: 360px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  .dragDropList {
-    padding: 0 10px;
-    width: 275px;
+.containerWrapper {
+  padding-left: 10px;
+  .container {
+    margin: 0;
+    width: 270px;
+    height: 325px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .dragDropList {
+      padding: 0 10px 0 0;
+      width: 265px;
+    }
   }
 }

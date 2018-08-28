@@ -5,10 +5,10 @@ import Sidebar from 'react-sidebar';
 import { MdClose, MdRemove, MdCallToAction, MdBrandingWatermark } from 'react-icons/md';
 import DragDropListContainer from '../../containers/DragDropListContainer';
 import PlayerContainer from '../../containers/PlayerContainer';
+import ListCollection from '../ListCollection';
 import { ICON_STYLES } from '../../../../constants/config';
 import icon from './icon.png';
 import './mainView.global.scss';
-
 
 class MainView extends React.Component {
   constructor(props) {
@@ -46,11 +46,7 @@ class MainView extends React.Component {
           rootClassName="root"
           sidebarClassName="sidebar"
           contentClassName={isDrawerOpen ? 'sidebarLeft' : undefined}
-          sidebar={
-            <div className='sidebarContainer'>
-              <button type="button" onClick={onTriggerSetting}><MdClose style={ICON_STYLES} /></button>
-            </div>
-          }
+          sidebar={<ListCollection />}
           open={isDrawerOpen}
           docked={isDrawerOpen}
           transitions
