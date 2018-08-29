@@ -1,13 +1,5 @@
 import Store from 'electron-store';
 
-const storeList = new Store({
-  name: 'videoList',
-  defaults: {
-    videoId: null,
-    list: [],
-  },
-});
-
 export const addVideoItem = ({
   videoId,
   title,
@@ -20,17 +12,33 @@ export const addVideoItem = ({
   author,
   duration,
   isPlay: true,
-})
+});
 
+export default class StoreList {
+  constructor() {
+    this.storeList = null;
+  }
+  static changeStore(name) {
+    this.storeList = new Store({
+      name,
+      defaults: {
+        title: '',
+        videoId: null,
+        list: [],
+      },
+    });
+  }
 
-export const getStoreList = (key) => storeList.get(key);
+  static getStoreList(key) {
+    return this.storeList.get(key)
+  }
 
-export const setStoreList = (key, arr) => {
-  storeList.set(key, arr);
-};
+  static setStoreList(key, arr) {
+    this.storeList.set(key, arr);
+  }
 
-export const clearStoreList = () => {
-  storeList.clear();
-  return [];
+  static clearStoreList() {
+    this.storeList.clear();
+    return [];
+  }
 }
-
