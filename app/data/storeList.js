@@ -30,7 +30,7 @@ export default class StoreList {
   }
 
   static getStoreList(key) {
-    return this.storeList.get(key)
+    return this.storeList.get(key);
   }
 
   static setStoreList(key, arr) {

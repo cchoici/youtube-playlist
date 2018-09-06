@@ -12,7 +12,7 @@
  */
 import electron from 'electron';
 import Store from 'electron-store';
-import MenuBuilder from './menu';
+// import MenuBuilder from './menu';
 
 const { app, ipcMain, BrowserWindow } = electron;
 
@@ -131,6 +131,6 @@ app.on('ready', async () => {
     mainWindow = null;
   });
 
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
+  // const menuBuilder = new MenuBuilder(mainWindow);
+  // menuBuilder.buildMenu();
 });
