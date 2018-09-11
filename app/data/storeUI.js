@@ -1,9 +1,14 @@
 import Store from 'electron-store';
 
-const storeUI = new Store({ name: 'ui' });
+export default class StoreUI {
+  static changeStore(name) {
+    this.storeUI = new Store({ name });  
+  }
+  static getStoreUI(key) {
+    return this.storeUI.get(key);
+  }
 
-export const getStoreUI = (key) => storeUI.get(key);
-
-export const setStoreUI = (key, v) => {
-  storeUI.set(key, v);
-};
+  static setStoreUI(key, v) {
+    this.storeUI.set(key, v);
+  }
+}
