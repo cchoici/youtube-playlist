@@ -1,7 +1,7 @@
 import Store from 'electron-store';
 import StoreBasic from './StoreBasic';
 
-export default class StoreList extends StoreBasic {
+export default class StoreBookmark extends StoreBasic {
   constructor(props) {
     super(props);
     this.data = null;
@@ -10,30 +10,22 @@ export default class StoreList extends StoreBasic {
     this.data = new Store({
       name,
       defaults: {
-        title: '',
-        videoId: null,
+        id: null,
         list: [],
       },
     });
   }
-
   static addItem({
-    videoId,
+    id,
     title,
-    author,
-    duration,
   }) {
     return {
-      id: videoId,
-      videoId,
+      id,
       title,
-      author,
-      duration,
-      isPlay: true,
     }
   }
-  static clearStoreList() {
-    this.storeList.clear();
+  static clearStoreBookmark() {
+    this.data.clear();
     return [];
   }
 }
