@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { remote, ipcRenderer } from 'electron';
-import { setMain, savePlayerData, triggerSetting } from '../modules/main';
+import { setMain, savePlayerData, triggerSetting } from '../modules/mainUI';
 import MainView from '../components/MainView';
 
 const closeWindow = () => {
@@ -17,7 +17,7 @@ const playWindow = (mode) => {
 };
 
 const mapStateToProps = ({
-  main: {
+  mainUI: {
     winMode,
     isDrawerOpen,
   }

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MdPlayCircleFilled, MdPlayCircleOutline } from "react-icons/md";
-import { ICON_STYLES } from 'constants/config';
-import { formatTime } from 'utils/transfer';
+import { ICON_STYLES } from '../../../../../constants/config';
+import { formatTime } from '../../../../../utils/transfer';
 import styles from './listItemStyles.scss';
 
 

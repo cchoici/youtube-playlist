@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { addVideoToList, playNextVideo } from '../modules/main';
+import { addVideoToList, playNextVideo } from '../modules/mainUI';
 import Player from '../components/Player';
 
 export const mapStateToProps = ({
-  main: {
+  mainUI: {
     videoId,
     isAddToList,
     loopType,

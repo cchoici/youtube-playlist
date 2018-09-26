@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { setMain, removeVideo, playVideo, triggerSetting } from '../modules/main';
+import { setMain, removeVideo, playVideo, triggerSetting } from '../modules/mainUI';
 import DragDropList from '../components/DragDropList';
 
 export const mapStateToProps = ({
-  main: {
+  mainUI: {
     winMode,
     videoList,
     loopType,

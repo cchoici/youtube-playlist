@@ -1,10 +1,10 @@
 // @flow
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
-import { mainReducer as main } from '../routes/Main/modules/main';
+import { mainUIReducer as mainUI } from '../routes/Main/modules/mainUI';
 
 const rootReducer = combineReducers({
-  main,
+  mainUI,
   router
 });
 

@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { setMain } from '../modules/main';
+import { setMain } from '../modules/mainUI';
 import SearchBar from '../components/SearchBar';
 
 export const mapStateToProps = ({
-  main: {
+  mainUI: {
     winMode,
     isAddToList
   }
