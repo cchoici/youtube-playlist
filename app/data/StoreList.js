@@ -6,7 +6,7 @@ export default class StoreList extends StoreBasic {
     super(props);
     this.data = null;
   }
-  static changeStore(name) {
+  static init(name) {
     this.data = new Store({
       name,
       defaults: {

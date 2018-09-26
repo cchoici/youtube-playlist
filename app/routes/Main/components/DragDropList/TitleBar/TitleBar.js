@@ -1,8 +1,8 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import { MdEdit } from 'react-icons/md';
+import { ICON_STYLES } from 'constants/config';
 import styles from './titleBarStyles.scss';
-import { ICON_STYLES } from '../../../../../constants/config';
 
 export default class TitleBar extends React.Component {
   render() {
