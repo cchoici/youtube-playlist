@@ -6,11 +6,12 @@ export default class StoreList extends StoreBasic {
     super(props);
     this.data = null;
   }
-  static init(name) {
+  static init(uuid) {
     this.data = new Store({
-      name,
+      name: uuid,
       defaults: {
         title: '',
+        uuid,
         videoId: null,
         list: [],
       },
@@ -32,8 +33,8 @@ export default class StoreList extends StoreBasic {
       isPlay: true,
     }
   }
-  static clearStoreList() {
-    this.storeList.clear();
-    return [];
-  }
+  // static clearStoreList() {
+  //   this.storeList.clear();
+  //   return [];
+  // }
 }

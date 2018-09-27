@@ -10,22 +10,22 @@ export default class StoreBookmark extends StoreBasic {
     this.data = new Store({
       name,
       defaults: {
-        id: null,
+        uuid: null,
         list: [],
       },
     });
   }
   static addItem({
-    id,
+    uuid,
     title,
   }) {
     return {
-      id,
+      uuid,
       title,
     }
   }
-  static clearStoreBookmark() {
-    this.data.clear();
-    return [];
-  }
+  // static clearStoreBookmark() {
+  //   this.data.clear();
+  //   return [];
+  // }
 }

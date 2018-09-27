@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { setMain, removeVideo, playVideo, triggerSetting } from '../modules/mainUI';
-import DragDropList from '../components/DragDropList';
+import ListDragDrop from '../components/ListDragDrop';
 
 export const mapStateToProps = ({
   mainUI: {
@@ -41,4 +41,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DragDropList);
+)(ListDragDrop);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Sidebar from 'react-sidebar';
 import { MdClose, MdRemove, MdCallToAction, MdBrandingWatermark } from 'react-icons/md';
-import DragDropListContainer from '../../containers/DragDropListContainer';
+import ListDragDropContainer from '../../containers/ListDragDropContainer';
 import PlayerContainer from '../../containers/PlayerContainer';
 import ListCollection from '../ListCollection';
 import { ICON_STYLES } from '../../../../constants/config';
@@ -56,7 +56,7 @@ class MainView extends React.Component {
           <div id="appContent" className={classNames({ 'playerMode': winMode === 'PLAYER'})}>
            
             <PlayerContainer />
-            <DragDropListContainer />
+            <ListDragDropContainer />
            
           </div>
         </Sidebar>

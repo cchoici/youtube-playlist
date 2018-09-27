@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import { MdClose } from 'react-icons/md';
+import { MdClose, MdAddBox } from 'react-icons/md';
 import styles from './listCollectionStyles.scss';
 import { ICON_STYLES } from '../../../../constants/config';
 
@@ -10,6 +10,9 @@ export default class ListCollection extends React.Component {
       <div className='sidebarContainer'>
         <div className={styles.sidebarHeader}>
           <div className={styles.space} />
+          <button type="button" onClick={() => {}}>
+            <MdAddBox style={ICON_STYLES} />
+          </button>
           <button type="button" onClick={() => {}}>
             <MdClose style={ICON_STYLES} />
           </button>

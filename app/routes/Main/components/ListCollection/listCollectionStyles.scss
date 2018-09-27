@@ -4,4 +4,16 @@
   .space {
     flex: 1;
   }
+  button {
+    /* set icon className is not workable on global overwrite...so set style attr instead */
+    border: none;
+    background: transparent;
+    padding: 5px;
+    margin: 3px 0px;
+    &:hover {
+      background-color: #eee !important;
+      border-radius: 0 !important;
+    }
+   
+  }
 }

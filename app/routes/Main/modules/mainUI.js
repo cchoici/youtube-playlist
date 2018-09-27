@@ -5,21 +5,25 @@ import StoreUI from '../../../data/StoreUI';
 
 const SET_MAIN = 'SET_MAIN';
 
-StoreBookmark.init('bookmark');
-const id = StoreBookmark.getValue('id');
-if (id) {
-  StoreList.init(id);
-} else {
-  // init setting bookmark & list...
-  const list = StoreBookmark.getValue('list');
-  const uuid = +new Date();
-  const obj = { id: uuid, title: `Bookmark ${list.length + 1}`};
-  const item = StoreBookmark.addItem(obj);
-  StoreBookmark.setValue('list',[item, ...list]);
-  StoreBookmark.setValue('id', uuid);
+const createBookmark = id => {
+  let uuid = id;
+  if (!uuid) {
+    // init setting bookmark & list...
+    const list = StoreBookmark.getValue('list');
+    uuid = +new Date();
+    const title = `Bookmark ${list.length + 1}`;
+    const item = StoreBookmark.addItem({ uuid, title });
+    StoreBookmark.setValues({ list: [item, ...list], uuid });
+    StoreList.setValue('title', title);
+  }
   StoreList.init(uuid);
 }
+
+StoreBookmark.init('bookmark');
+const id = StoreBookmark.getValue('uuid');
+createBookmark(id);
 StoreUI.init('ui');
+
 
 export const setMain = createAction(SET_MAIN);
 
@@ -31,6 +35,7 @@ const initialState = {
   loopType: "SINGLE",
   videoList: StoreList.getValue('list'),
 };
+
 const findIndexVideo = (videoId, videoList) => videoList.findIndex(item => item.id === videoId);
 
 export const triggerSetting = () => (dispatch, getState) => {
@@ -39,7 +44,6 @@ export const triggerSetting = () => (dispatch, getState) => {
 };
 
 export const removeVideo = ({ videoId }) => (dispatch, getState) => {
-  console.log('delete')
   const { mainUI: { videoList } } = getState();
   const idx = findIndexVideo(videoId, videoList);
   videoList.splice(idx, 1);
@@ -49,7 +53,6 @@ export const removeVideo = ({ videoId }) => (dispatch, getState) => {
   
 };
 export const playVideo = ({ videoId }) => (dispatch, getState) => {
-  console.log('play')
   const { mainUI: { videoList } } = getState();
   const idx = findIndexVideo(videoId, videoList);
   const list = videoList.map((obj, i) => {

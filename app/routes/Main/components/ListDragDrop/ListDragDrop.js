@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import ListItem from './ListItem';
 import NavBar from './NavBar';
 import TitleBar from './TitleBar';
-import styles from './dragDropListStyles.scss';
+import styles from './listDragDropStyles.scss';
 
 // const getItems = count =>
 //   Array.from({ length: count }, (v, k) => k).map(k => ({
@@ -21,7 +21,7 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
-class DragDropList extends React.Component {
+class ListDragDrop extends React.Component {
   constructor(props) {
     super(props);
     this.onDragEnd = this.onDragEnd.bind(this);
@@ -67,7 +67,7 @@ class DragDropList extends React.Component {
               {(provided) => (
                 <div
                   ref={provided.innerRef}
-                  className={styles.dragDropList}
+                  className={styles.listDragDrop}
                 >
                   {items.map((item, index) => (
                     <Draggable key={item.id} draggableId={item.id} index={index}>
@@ -95,7 +95,7 @@ class DragDropList extends React.Component {
   }
 }
 
-DragDropList.propTypes = {
+ListDragDrop.propTypes = {
   visible: PropTypes.bool,
   loopType: PropTypes.oneOf(['SINGLE', 'ALL']),
   onLoopChange: PropTypes.func,
@@ -106,7 +106,7 @@ DragDropList.propTypes = {
   onRemoveVideo: PropTypes.func,
 };
 
-DragDropList.defaultProps = {
+ListDragDrop.defaultProps = {
   visible: true,
   loopType: 'SINGLE',
   onLoopChange: () => {},
@@ -116,4 +116,4 @@ DragDropList.defaultProps = {
   onSwitchVideo: () => {},
   onRemoveVideo: () => {},
 };
-export default DragDropList;
+export default ListDragDrop;
