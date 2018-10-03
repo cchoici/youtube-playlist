@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
-import StoreBookmark from '../../../data/StoreBookmark';
-import StoreList from '../../../data/StoreList';
-import StoreUI from '../../../data/StoreUI';
+import StoreBookmark from 'data/StoreBookmark';
+import StoreList from 'data/StoreList';
+import StoreUI from 'data/StoreUI';
 
 const SET_MAIN = 'SET_MAIN';
 
@@ -33,10 +33,13 @@ const initialState = {
   videoId: StoreList.getValue('videoId'),
   isAddToList: false,
   loopType: "SINGLE",
-  videoList: StoreList.getValue('list'),
+  bookmarkList: StoreBookmark.getValue('list'),
+  listTitle: StoreList.getValue('title'),
+  listVideo: StoreList.getValue('list'),
 };
+console.log('initialState:', initialState);
 
-const findIndexVideo = (videoId, videoList) => videoList.findIndex(item => item.id === videoId);
+const findIndexVideo = (videoId, listVideo) => listVideo.findIndex(item => item.id === videoId);
 
 export const triggerSetting = () => (dispatch, getState) => {
   const { mainUI: { isDrawerOpen } } = getState();
@@ -44,18 +47,18 @@ export const triggerSetting = () => (dispatch, getState) => {
 };
 
 export const removeVideo = ({ videoId }) => (dispatch, getState) => {
-  const { mainUI: { videoList } } = getState();
-  const idx = findIndexVideo(videoId, videoList);
-  videoList.splice(idx, 1);
+  const { mainUI: { listVideo } } = getState();
+  const idx = findIndexVideo(videoId, listVideo);
+  listVideo.splice(idx, 1);
   dispatch(setMain({
-    videoList: videoList.slice(0),
+    listVideo: listVideo.slice(0),
   }));
   
 };
 export const playVideo = ({ videoId }) => (dispatch, getState) => {
-  const { mainUI: { videoList } } = getState();
-  const idx = findIndexVideo(videoId, videoList);
-  const list = videoList.map((obj, i) => {
+  const { mainUI: { listVideo } } = getState();
+  const idx = findIndexVideo(videoId, listVideo);
+  const list = listVideo.map((obj, i) => {
     const item = obj;
     item.isPlay = i === idx ? !false : false;
     return item;
@@ -63,15 +66,15 @@ export const playVideo = ({ videoId }) => (dispatch, getState) => {
   list.slice(0);
   dispatch(setMain({
     videoId,
-    videoList: list,
+    listVideo: list,
   }));
 };
 
 export const playNextVideo = () => (dispatch, getState) => {
-  const { mainUI: { videoId, videoList } } = getState();
-  let idx = findIndexVideo(videoId, videoList);
-  idx = (idx < videoList.length -1) ? idx +1 : 0;
-  const { videoId: nextVideoId } = videoList[idx];
+  const { mainUI: { videoId, listVideo } } = getState();
+  let idx = findIndexVideo(videoId, listVideo);
+  idx = (idx < listVideo.length -1) ? idx +1 : 0;
+  const { videoId: nextVideoId } = listVideo[idx];
   dispatch(playVideo({ videoId: nextVideoId }));
 };
 
@@ -86,16 +89,16 @@ export const addVideoToList = ({
     return;
   }
 
-  const { mainUI: { videoList } } = getState();
-  const isExist = videoList.findIndex(item => item.id === videoId) !== -1;
+  const { mainUI: { listVideo } } = getState();
+  const isExist = listVideo.findIndex(item => item.id === videoId) !== -1;
   if (!isExist) {
-    const list = videoList.map(obj => {
+    const list = listVideo.map(obj => {
       const item = obj;
       item.isPlay = false;
       return item;
     })
     dispatch(setMain({
-      videoList: [StoreList.addItem({
+      listVideo: [StoreList.addItem({
         videoId,
         author,
         title,
@@ -104,20 +107,20 @@ export const addVideoToList = ({
       isAddToList: false,
     }));
   } else {
-    const list = videoList.map(obj => {
+    const list = listVideo.map(obj => {
       const item = obj;
       item.isPlay = videoId === item.videoId ? !false : false;
       return item;
     })
-    dispatch(setMain({ videoList: list, isAddToList: false }));
+    dispatch(setMain({ listVideo: list, isAddToList: false }));
   }
 };
 export const savePlayerData = () => (dispatch, getState) => {
-  const { mainUI: { winMode, videoId, videoList } } = getState();
+  const { mainUI: { winMode, videoId, listVideo } } = getState();
   return new Promise((resolve) => {
     StoreUI.setValue('winMode', winMode);
     StoreList.setValue('videoId', videoId);
-    StoreList.setValue('list', videoList);
+    StoreList.setValue('list', listVideo);
     resolve('save');
   })
 };

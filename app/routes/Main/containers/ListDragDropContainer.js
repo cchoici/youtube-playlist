@@ -5,12 +5,14 @@ import ListDragDrop from '../components/ListDragDrop';
 export const mapStateToProps = ({
   mainUI: {
     winMode,
-    videoList,
+    listTitle,
+    listVideo,
     loopType,
   },
 }) => ({
   visible: winMode === 'NORMAL' ? !false : false,
-  videoList,
+  listTitle,
+  listVideo,
   loopType,
 });
 
@@ -27,8 +29,8 @@ export const mapDispatchToProps = dispatch => ({
   onTriggerSetting: () => {
     dispatch(triggerSetting());
   },
-  onDragEnd: (items) => {
-    dispatch(setMain({ videoList: items }));
+  onDragEnd: (listVideo) => {
+    dispatch(setMain({ listVideo }));
   },
   onRemoveVideo: ({ videoId }) => {
     dispatch(removeVideo({ videoId }));

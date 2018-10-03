@@ -1,0 +1,44 @@
+.box {
+  border-top: 1px #eee solid;
+  border-bottom: 1px #ddd solid;  
+  display: flex;
+  color: #333;
+  font-size: 12px;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  > svg {
+    margin: 5px;
+  }
+  > span {
+    flex: 1;
+    align-items: center;
+  }
+  .navGroup {
+    display: flex;
+    height: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    .btn {
+      &:first-child {
+        color: #333;
+        padding-right: 10px;
+        align-self: flex-end;
+        height: 20px;
+      }
+      background: transparent;
+      align-self: stretch;
+      color: #fff;
+      font-size: 10px;
+      display: inline-block;
+      padding: 2px 5px;
+      cursor: pointer;
+      border: 0;
+      height: 30px;
+      &.playing {
+        // background: #632d2d;
+      }
+    }
+  }
+}

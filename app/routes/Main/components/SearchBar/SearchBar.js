@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MdSearch, MdAdd, MdFavorite} from 'react-icons/md';
-import { ICON_STYLES, MATCH_URL } from '../../../../constants/config';
+import { ICON_STYLES, MATCH_URL } from 'constants/config';
 import styles from './searchBarStyles.scss';
 
 class SearchBar extends React.Component {

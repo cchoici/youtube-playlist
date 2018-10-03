@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
+import SearchBarContainer from 'routes/Main/containers/SearchBarContainer';
 import NavBar from './NavBar';
-import SearchBarContainer from '../../containers/SearchBarContainer';
 import styles from './playerStyles.scss';
 
 const volumeWidth = 50;

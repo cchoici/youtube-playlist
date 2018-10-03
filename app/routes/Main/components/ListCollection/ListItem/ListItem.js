@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdPlayCircleFilled, MdPlayCircleOutline } from "react-icons/md";
+import { MdPlayCircleFilled, MdPlayCircleOutline, MdFolderOpen } from "react-icons/md";
 import { ICON_STYLES } from 'constants/config';
-import { formatTime } from 'utils/transfer';
 import styles from './listItemStyles.scss';
 
 
@@ -12,9 +11,9 @@ const getItemStyle = (isDragging, draggableStyle) => {
     userSelect: 'none',
     padding: '2px 0',
     margin: '0 0 1px 0',
-    background: isDragging ? '#e8e3e3' : '#f4f1f1'
+    background: isDragging ? '#e8e3e3' : '#fff'
   };
-  return transform ? { ...style, ...draggableStyle } : style;
+  return transform ? { ...style, ...draggableStyle, left: 0 } : style;
 };
 
 class ListItem extends React.Component {
@@ -44,22 +43,11 @@ class ListItem extends React.Component {
           provided.draggableProps.style
         )}
       >
+        <MdFolderOpen style={{ ...ICON_STYLES, width: 25, height: 25 }} />
         <span>
-          <div className={styles.imgContainer}>
-            <img alt='' src={`https://img.youtube.com/vi/${item.videoId}/1.jpg`} />
-            <span className={styles.bar}>
-              {formatTime(Math.round(item.duration || 0))}
-            </span>
-          </div>
           {item.title}
         </span>
         <div className={styles.navGroup}>
-          <button
-            className={styles.btn}
-            onClick={this.onRemoveVideo}
-          >
-            X
-          </button>
           <button
             className={styles.btn}
             onClick={this.onSwitchVideo}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { formatTime } from 'utils/transfer';
 import styles from './seekBarStyles.scss';
-import { formatTime } from '../../../../../utils/transfer';
 
 class SeekBar extends React.Component {
   constructor(props) {

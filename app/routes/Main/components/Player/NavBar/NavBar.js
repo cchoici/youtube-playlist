@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MdPause, MdPlayArrow, MdVolumeUp, MdVolumeOff } from 'react-icons/md';
-import { ICON_STYLES } from '../../../../../constants/config';
+import { ICON_STYLES } from 'constants/config';
 import SeekBar from '../SeekBar';
 import styles from './navBarStyles.scss';
 
