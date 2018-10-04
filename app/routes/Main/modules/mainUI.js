@@ -36,6 +36,7 @@ const initialState = {
   bookmarkList: StoreBookmark.getValue('list'),
   listTitle: StoreList.getValue('title'),
   listVideo: StoreList.getValue('list'),
+  bookmarkTitle: 'Bookmark',
 };
 console.log('initialState:', initialState);
 

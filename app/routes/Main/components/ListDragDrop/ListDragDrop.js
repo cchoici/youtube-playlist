@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { reorder } from 'utils/transfer';
 import ListItem from './ListItem';
 import NavBar from './NavBar';
-import TitleBar from './TitleBar';
+import TitleBar from '../TitleBar';
 import styles from './listDragDropStyles.scss';
 
 class ListDragDrop extends React.Component {

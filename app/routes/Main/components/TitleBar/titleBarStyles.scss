@@ -1,6 +1,7 @@
 .containerTitleBar {
   position: relative;
 	display: flex;
+  padding-left: 10px;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
@@ -11,6 +12,8 @@
     content: "";
     position: absolute;
     bottom: 0;
+    left: 50%;
+    margin-left: -135px;
     width: 270px;
     border-bottom: 1px #ccc solid;
   }

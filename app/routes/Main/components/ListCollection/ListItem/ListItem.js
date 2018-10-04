@@ -13,7 +13,7 @@ const getItemStyle = (isDragging, draggableStyle) => {
     margin: '0 0 1px 0',
     background: isDragging ? '#e8e3e3' : '#fff'
   };
-  return transform ? { ...style, ...draggableStyle, left: 0 } : style;
+  return transform ? { ...style, ...draggableStyle, left: 0, top: 26 } : style;
 };
 
 class ListItem extends React.Component {

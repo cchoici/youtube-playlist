@@ -1,25 +1,23 @@
-.sidebarContainer{
-  .sidebarHeader{
-    display: flex;
-    flex-direction: row;
-    .space {
-      flex: 1;
-    }
-    button {
-      /* set icon className is not workable on global overwrite...so set style attr instead */
-      border: none;
-      background: transparent;
-      padding: 5px;
-      margin: 3px 0px;
-      &:hover {
-        background-color: #eee !important;
-        border-radius: 0 !important;
-      }
+.sidebarHeader{
+  display: flex;
+  flex-direction: row;
+  .space {
+    flex: 1;
+  }
+  button {
+    /* set icon className is not workable on global overwrite...so set style attr instead */
+    border: none;
+    background: transparent;
+    padding: 5px;
+    margin: 3px 0px;
+    &:hover {
+      background-color: #eee !important;
+      border-radius: 0 !important;
     }
   }
-  .container {
-    height: 325px;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+}
+.container {
+  height: 325px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
