@@ -22,31 +22,32 @@ export default class ListCollection extends React.Component {
     const { isEditBookmark } = this.state;
     this.setState({ isEditBookmark: !isEditBookmark });
   }
-  onEditSave(title) {
-    console.log('ListCollection:', title);
+  onEditSave(bookmarkTitle) {
+    console.log('ListCollection:', bookmarkTitle);
     const { onEditSave } = this.props;
     this.setState({ isEditBookmark: false });
-    onEditSave(title);
+    onEditSave(bookmarkTitle);
   }
   onDragEnd(result) {
-    const { onDragEnd, bookmarkList: itemsOri } = this.props;
+    const { onDragEnd, listBookmark: itemsOri } = this.props;
     // dropped outside the list
     if (!result.destination) {
       return;
     }
 
-    const bookmarkList = reorder(
+    const listBookmark = reorder(
       itemsOri,
       result.source.index,
       result.destination.index
     );
-    onDragEnd(bookmarkList);
+    onDragEnd(listBookmark);
   }
   render() {
     const {
       visible,
-      bookmarkList: items,
+      listBookmark: items,
       bookmarkTitle,
+      onSwitchBookmark,
     } = this.props;
     const { isEditBookmark } = this.state;
     if (!visible) return null;
@@ -74,16 +75,16 @@ export default class ListCollection extends React.Component {
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppableCollect">
               {(provided) => (
-                <div ref={provided.innerRef} className={styles.listDragDrop}   >
+                <div ref={provided.innerRef} className={styles.listDragDrop}>
                   {items.map((item, index) => (
-                    <Draggable key={item.id} draggableId={item.id} index={index}>
+                    <Draggable key={`${item.uuid}`} draggableId={`${item.uuid}`} index={index}>
                       {(provided2, snapshot2) => (
                         <ListItem
                           item={item}
-                          key={`${item.id}_item`}
+                          key={`${item.uuid}_col`}
                           provided={provided2}
                           snapshot={snapshot2}
-                          
+                          onSwitchBookmark={onSwitchBookmark}
                         />
                       )}
                     </Draggable>
@@ -102,15 +103,17 @@ export default class ListCollection extends React.Component {
 ListCollection.defaultProps = {
   visible: true,
   bookmarkTitle: '',
-  bookmarkList: [],
+  listBookmark: [],
   onDragEnd: () => {},
   onEditSave:() => {},
+  onSwitchBookmark:() => {},
 };
 
 ListCollection.propTypes = {
   visible: PropTypes.bool,
   bookmarkTitle: PropTypes.string,
-  bookmarkList: PropTypes.arrayOf(PropTypes.object),
+  listBookmark: PropTypes.arrayOf(PropTypes.object),
   onDragEnd: PropTypes.func,
   onEditSave: PropTypes.func,
+  onSwitchBookmark: PropTypes.func,
 };

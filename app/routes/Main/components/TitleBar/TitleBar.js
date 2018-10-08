@@ -4,7 +4,7 @@ import { MdEdit } from 'react-icons/md';
 import { ICON_STYLES } from 'constants/config';
 import styles from './titleBarStyles.scss';
 
-export default class TitleBar extends React.Component {
+export default class TitleBar extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +12,11 @@ export default class TitleBar extends React.Component {
     };
     this.onEdit = this.onEdit.bind(this);
     this.onEditSave = this.onEditSave.bind(this);
+  }
+  componentWillReceiveProps({ title }) {
+    if (title !== this.props.title) {
+      this.setState({ title })
+    }
   }
   onEdit(title) {
     console.log('title:', title);

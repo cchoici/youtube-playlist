@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdPlayCircleFilled, MdPlayCircleOutline, MdFolderOpen } from "react-icons/md";
+import { MdClose, MdPlayCircleFilled, MdPlayCircleOutline, MdFolderOpen } from "react-icons/md";
 import { ICON_STYLES } from 'constants/config';
 import styles from './listItemStyles.scss';
 
@@ -13,22 +13,22 @@ const getItemStyle = (isDragging, draggableStyle) => {
     margin: '0 0 1px 0',
     background: isDragging ? '#e8e3e3' : '#fff'
   };
-  return transform ? { ...style, ...draggableStyle, left: 0, top: 26 } : style;
+  return transform ? { ...style, ...draggableStyle, left: 0, top: draggableStyle.top - 26 } : style;
 };
 
 class ListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.onRemoveVideo = this.onRemoveVideo.bind(this);
-    this.onSwitchVideo = this.onSwitchVideo.bind(this);
+    this.onRemoveBookmark = this.onRemoveBookmark.bind(this);
+    this.onSwitchBookmark = this.onSwitchBookmark.bind(this);
   }
-  onRemoveVideo() {
-    const { onRemoveVideo, item: { videoId } } = this.props;
-    onRemoveVideo({ videoId });
+  onRemoveBookmark() {
+    const { onRemoveBookmark, item: { uuid } } = this.props;
+    onRemoveBookmark({ uuid });
   }
-  onSwitchVideo() {
-    const { onSwitchVideo, item: { videoId } } = this.props;
-    onSwitchVideo({ videoId });
+  onSwitchBookmark() {
+    const { onSwitchBookmark, item: { uuid } } = this.props;
+    onSwitchBookmark({ uuid });
   }
   render() {
     const { item, provided, snapshot } = this.props;
@@ -48,9 +48,12 @@ class ListItem extends React.Component {
           {item.title}
         </span>
         <div className={styles.navGroup}>
+          <button type="button" onClick={this.onRemoveBookmark}>
+            <MdClose style={ICON_STYLES} />
+          </button>
           <button
             className={styles.btn}
-            onClick={this.onSwitchVideo}
+            onClick={this.onSwitchBookmark}
           >
             {
               item.isPlay
@@ -68,15 +71,15 @@ ListItem.propTypes = {
   item: PropTypes.shape({}),
   provided: PropTypes.shape({}),
   snapshot: PropTypes.shape({}),
-  onSwitchVideo: PropTypes.func,
-  onRemoveVideo: PropTypes.func,
+  onSwitchBookmark: PropTypes.func,
+  onRemoveBookmark: PropTypes.func,
 };
 
 ListItem.defaultProps = {
   item: {},
   provided: {},
   snapshot: {},
-  onSwitchVideo: () => {},
-  onRemoveVideo: () => {},
+  onSwitchBookmark: () => {},
+  onRemoveBookmark: () => {},
 }
 export default ListItem;

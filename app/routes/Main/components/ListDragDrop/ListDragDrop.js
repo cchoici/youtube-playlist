@@ -40,6 +40,7 @@ class ListDragDrop extends React.Component {
       listTitle,
     } = this.props;
     if (!visible) return null;
+    console.log('listTitle:', listTitle);
     return (
       <div className={styles.containerWrapper}>
         <NavBar

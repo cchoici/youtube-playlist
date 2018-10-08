@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdPlayCircleFilled, MdPlayCircleOutline } from "react-icons/md";
+import { MdClose, MdPlayCircleFilled, MdPlayCircleOutline } from "react-icons/md";
 import { ICON_STYLES } from 'constants/config';
 import { formatTime } from 'utils/transfer';
 import styles from './listItemStyles.scss';
@@ -54,12 +54,10 @@ class ListItem extends React.Component {
           {item.title}
         </span>
         <div className={styles.navGroup}>
-          <button
-            className={styles.btn}
-            onClick={this.onRemoveVideo}
-          >
-            X
+          <button type="button" className={styles.btn} onClick={this.onRemoveVideo}>
+            <MdClose style={ICON_STYLES} />
           </button>
+          
           <button
             className={styles.btn}
             onClick={this.onSwitchVideo}

@@ -5,18 +5,23 @@ import StoreUI from 'data/StoreUI';
 
 const SET_MAIN = 'SET_MAIN';
 
-const createBookmark = id => {
+const createBookmark = (id, bookmarkTitle) => {
   let uuid = id;
+  const list = StoreBookmark.getValue('list');
+  let title = bookmarkTitle;
   if (!uuid) {
     // init setting bookmark & list...
-    const list = StoreBookmark.getValue('list');
     uuid = +new Date();
-    const title = `Bookmark ${list.length + 1}`;
+    title = `Bookmark ${list.length + 1}`;
     const item = StoreBookmark.addItem({ uuid, title });
     StoreBookmark.setValues({ list: [item, ...list], uuid });
-    StoreList.setValue('title', title);
+  } else {
+    const selected = list.find(bookmark => bookmark.uuid === id);
+    const { title: titleSelected } = selected;
+    title =  bookmarkTitle || titleSelected;
   }
   StoreList.init(uuid);
+  StoreList.setValue('title', title);
 }
 
 StoreBookmark.init('bookmark');
@@ -33,7 +38,7 @@ const initialState = {
   videoId: StoreList.getValue('videoId'),
   isAddToList: false,
   loopType: "SINGLE",
-  bookmarkList: StoreBookmark.getValue('list'),
+  listBookmark: StoreBookmark.getValue('list'),
   listTitle: StoreList.getValue('title'),
   listVideo: StoreList.getValue('list'),
   bookmarkTitle: 'Bookmark',
@@ -78,7 +83,21 @@ export const playNextVideo = () => (dispatch, getState) => {
   const { videoId: nextVideoId } = listVideo[idx];
   dispatch(playVideo({ videoId: nextVideoId }));
 };
-
+export const saveBookmarkTitle = (bookmarkTitle) => (dispatch) => {
+  // const { mainUI: { listBookmark } } = getState();
+  createBookmark(null, bookmarkTitle);
+  dispatch(setMain({
+    bookmarkTitle,
+    listBookmark: StoreBookmark.getValue('list'),
+  }));
+};
+export const playBookmark =({ uuid }) => (dispatch) => {
+  createBookmark(uuid);
+  dispatch(setMain({
+    listTitle: StoreList.getValue('title'),
+    listVideo: StoreList.getValue('list'),
+  }));
+};
 export const addVideoToList = ({
   videoId,
   author,
