@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdEdit } from 'react-icons/md';
+import { MdSend, MdAdd } from 'react-icons/md';
 import { ICON_STYLES } from 'constants/config';
 import styles from './titleBarStyles.scss';
+
+const ICON_CUSTOME_STYLES = {
+  width: 20,
+  height: 20,
+  color: '#666',
+  verticalAlign: 'middle',
+};
 
 export default class TitleBar extends React.PureComponent {
   constructor(props) {
@@ -28,12 +35,16 @@ export default class TitleBar extends React.PureComponent {
     onEditSave(title);
   }
   render() {
-    const { editable } = this.props;
+    const { editable, type } = this.props;
     const { title } = this.state;
     const edit = editable
       ? (
         <button type="button" onClick={this.onEditSave}>
-          <MdEdit style={ICON_STYLES} />
+          {
+            type === 'send'
+            ? <MdSend style={ICON_STYLES} />
+            : <MdAdd style={ICON_CUSTOME_STYLES} />
+          }
         </button>
       ) : null;
     return (
@@ -53,11 +64,13 @@ export default class TitleBar extends React.PureComponent {
 TitleBar.defaultProps = {
   title: '',
   editable: false,
+  type: 'send',
   onEditSave: () => {},
 };
 
 TitleBar.propTypes = {
   title: PropTypes.string,
   editable: PropTypes.bool,
+  type: 'send',
   onEditSave: PropTypes.func,
 };

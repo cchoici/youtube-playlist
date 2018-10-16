@@ -5,13 +5,13 @@ import ListDragDrop from '../components/ListDragDrop';
 export const mapStateToProps = ({
   mainUI: {
     winMode,
-    listTitle,
+    bookmarkTitle,
     listVideo,
     loopType,
   },
 }) => ({
   visible: winMode === 'NORMAL' ? !false : false,
-  listTitle,
+  bookmarkTitle,
   listVideo,
   loopType,
 });

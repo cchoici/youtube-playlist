@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { MdClose, MdAddBox, MdIndeterminateCheckBox } from 'react-icons/md';
+import { MdClose, MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 import { reorder } from 'utils/transfer';
 import { ICON_STYLES } from 'constants/config';
 import TitleBar from '../TitleBar';
 import ListItem from './ListItem';
 import styles from './listCollectionStyles.scss';
+
+const ICON_CUSTOME_STYLES = {
+  width: 20,
+  height: 20,
+  color: '#666',
+  verticalAlign: 'middle',
+};
 
 export default class ListCollection extends React.Component {
   constructor(props) {
@@ -57,8 +64,8 @@ export default class ListCollection extends React.Component {
           <button type="button" onClick={this.onEditBookmark}>
             { 
               isEditBookmark
-              ? <MdIndeterminateCheckBox style={ICON_STYLES} />
-              : <MdAddBox style={ICON_STYLES} />
+              ? <MdKeyboardArrowUp style={ICON_CUSTOME_STYLES} />
+              : <MdKeyboardArrowDown style={ICON_CUSTOME_STYLES} />
             }
           </button>
           <div className={styles.space} />
@@ -68,7 +75,7 @@ export default class ListCollection extends React.Component {
         </div>
         {
           isEditBookmark
-          ? <TitleBar title={bookmarkTitle} onEditSave={this.onEditSave} editable />
+          ? <TitleBar title={bookmarkTitle} onEditSave={this.onEditSave} editable type='add' />
           : null
         }
         <div className={styles.container}>
@@ -81,7 +88,7 @@ export default class ListCollection extends React.Component {
                       {(provided2, snapshot2) => (
                         <ListItem
                           item={item}
-                          key={`${item.uuid}_col`}
+                          key={`${item.uuid}_${item.title}`}
                           provided={provided2}
                           snapshot={snapshot2}
                           onSwitchBookmark={onSwitchBookmark}
