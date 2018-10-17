@@ -37,7 +37,8 @@ class ListDragDrop extends React.Component {
       onSwitchVideo,
       onRemoveVideo,
       listVideo: items,
-      bookmarkTitle,
+      titleBookmark,
+      onEditSend,
     } = this.props;
     if (!visible) return null;
     return (
@@ -47,7 +48,7 @@ class ListDragDrop extends React.Component {
           onLoopChange={onLoopChange}
           onTriggerSetting={onTriggerSetting}
         />
-        <TitleBar title={bookmarkTitle} editable />
+        <TitleBar title={titleBookmark} editable onEditSend={onEditSend} />
         <div className={styles.container}>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="droppable">
@@ -81,7 +82,7 @@ class ListDragDrop extends React.Component {
 
 ListDragDrop.propTypes = {
   visible: PropTypes.bool,
-  bookmarkTitle: PropTypes.string,
+  titleBookmark: PropTypes.string,
   loopType: PropTypes.oneOf(['SINGLE', 'ALL']),
   onLoopChange: PropTypes.func,
   onTriggerSetting: PropTypes.func,
@@ -89,11 +90,12 @@ ListDragDrop.propTypes = {
   onDragEnd: PropTypes.func,
   onSwitchVideo: PropTypes.func,
   onRemoveVideo: PropTypes.func,
+  onEditSend: PropTypes.func,
 };
 
 ListDragDrop.defaultProps = {
   visible: true,
-  bookmarkTitle: '',
+  titleBookmark: '',
   loopType: 'SINGLE',
   onLoopChange: () => {},
   onTriggerSetting: () => {},
@@ -101,5 +103,6 @@ ListDragDrop.defaultProps = {
   onDragEnd: () => {},
   onSwitchVideo: () => {},
   onRemoveVideo: () => {},
+  onEditSend: () => {},
 };
 export default ListDragDrop;

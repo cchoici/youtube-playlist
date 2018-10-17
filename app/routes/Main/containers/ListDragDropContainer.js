@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
-import { setMain, removeVideo, playVideo, triggerSetting } from '../modules/mainUI';
+import { setMain, removeVideo, playVideo, triggerSetting, saveListTitle } from '../modules/mainUI';
 import ListDragDrop from '../components/ListDragDrop';
 
 export const mapStateToProps = ({
   mainUI: {
     winMode,
-    bookmarkTitle,
+    titleBookmark,
     listVideo,
     loopType,
   },
 }) => ({
   visible: winMode === 'NORMAL' ? !false : false,
-  bookmarkTitle,
+  titleBookmark,
   listVideo,
   loopType,
 });
@@ -25,6 +25,9 @@ export const mapDispatchToProps = dispatch => ({
       default:
         dispatch(setMain({ loopType: 'SINGLE'}));
     }
+  },
+  onEditSend: (title) => {
+    dispatch(saveListTitle(title));
   },
   onTriggerSetting: () => {
     dispatch(triggerSetting());

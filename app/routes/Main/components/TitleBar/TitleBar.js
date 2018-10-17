@@ -18,7 +18,7 @@ export default class TitleBar extends React.PureComponent {
       title: props.title,
     };
     this.onEdit = this.onEdit.bind(this);
-    this.onEditSave = this.onEditSave.bind(this);
+    this.onEditSend = this.onEditSend.bind(this);
   }
   componentWillReceiveProps({ title }) {
     if (title !== this.props.title) {
@@ -26,20 +26,19 @@ export default class TitleBar extends React.PureComponent {
     }
   }
   onEdit(title) {
-    console.log('title:', title);
     this.setState({ title });
   }
-  onEditSave() {
-    const { onEditSave } = this.props;
+  onEditSend() {
+    const { onEditSend } = this.props;
     const { title } = this.state;
-    onEditSave(title);
+    onEditSend(title);
   }
   render() {
     const { editable, type } = this.props;
     const { title } = this.state;
     const edit = editable
       ? (
-        <button type="button" onClick={this.onEditSave}>
+        <button type="button" onClick={this.onEditSend}>
           {
             type === 'send'
             ? <MdSend style={ICON_STYLES} />
@@ -65,12 +64,12 @@ TitleBar.defaultProps = {
   title: '',
   editable: false,
   type: 'send',
-  onEditSave: () => {},
+  onEditSend: () => {},
 };
 
 TitleBar.propTypes = {
   title: PropTypes.string,
   editable: PropTypes.bool,
   type: 'send',
-  onEditSave: PropTypes.func,
+  onEditSend: PropTypes.func,
 };

@@ -10,7 +10,6 @@ export default class StoreList extends StoreBasic {
     this.data = new Store({
       name: uuid,
       defaults: {
-        title: '',
         uuid,
         videoId: null,
         list: [],

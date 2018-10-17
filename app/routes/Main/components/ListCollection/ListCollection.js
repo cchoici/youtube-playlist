@@ -23,17 +23,17 @@ export default class ListCollection extends React.Component {
     }
     this.onDragEnd = this.onDragEnd.bind(this);
     this.onEditBookmark = this.onEditBookmark.bind(this);
-    this.onEditSave = this.onEditSave.bind(this);
+    this.onEditSend = this.onEditSend.bind(this);
   }
   onEditBookmark() {
     const { isEditBookmark } = this.state;
     this.setState({ isEditBookmark: !isEditBookmark });
   }
-  onEditSave(bookmarkTitle) {
-    console.log('ListCollection:', bookmarkTitle);
-    const { onEditSave } = this.props;
+  onEditSend(titleBookmark) {
+    console.log('ListCollection:', titleBookmark);
+    const { onEditSend } = this.props;
     this.setState({ isEditBookmark: false });
-    onEditSave(bookmarkTitle);
+    onEditSend(titleBookmark);
   }
   onDragEnd(result) {
     const { onDragEnd, listBookmark: itemsOri } = this.props;
@@ -53,7 +53,6 @@ export default class ListCollection extends React.Component {
     const {
       visible,
       listBookmark: items,
-      bookmarkTitle,
       onSwitchBookmark,
     } = this.props;
     const { isEditBookmark } = this.state;
@@ -75,7 +74,7 @@ export default class ListCollection extends React.Component {
         </div>
         {
           isEditBookmark
-          ? <TitleBar title={bookmarkTitle} onEditSave={this.onEditSave} editable type='add' />
+          ? <TitleBar onEditSend={this.onEditSend} editable type='add' />
           : null
         }
         <div className={styles.container}>
@@ -109,18 +108,16 @@ export default class ListCollection extends React.Component {
 
 ListCollection.defaultProps = {
   visible: true,
-  bookmarkTitle: '',
   listBookmark: [],
   onDragEnd: () => {},
-  onEditSave:() => {},
+  onEditSend:() => {},
   onSwitchBookmark:() => {},
 };
 
 ListCollection.propTypes = {
   visible: PropTypes.bool,
-  bookmarkTitle: PropTypes.string,
   listBookmark: PropTypes.arrayOf(PropTypes.object),
   onDragEnd: PropTypes.func,
-  onEditSave: PropTypes.func,
+  onEditSend: PropTypes.func,
   onSwitchBookmark: PropTypes.func,
 };

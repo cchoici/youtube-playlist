@@ -6,9 +6,9 @@ export default class StoreBookmark extends StoreBasic {
     super(props);
     this.data = null;
   }
-  static init(name) {
+  static init(title) {
     this.data = new Store({
-      name,
+      name: title,
       defaults: {
         uuid: null,
         list: [],
