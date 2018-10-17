@@ -20,15 +20,13 @@ const createBookmark = (id, titleBookmark) => {
     const { title: titleSelected } = list[idx];
     title =  titleBookmark || titleSelected;
     list[idx].title = title;
-    StoreBookmark.setValue('list', list);
+    StoreBookmark.setValues({ list, uuid });
 
   }
   StoreList.init(uuid);
   list = StoreBookmark.getValue('list');
   uuid = StoreBookmark.getValue('uuid');
-  console.log(list.find(item => item.uuid === uuid));
-  return list.find(item => item.uuid === uuid)[0];
-  // return { title: 1 };
+  return list.find(item => item.uuid === uuid);
 }
 
 StoreBookmark.init('bookmark');
@@ -89,8 +87,18 @@ export const playNextVideo = () => (dispatch, getState) => {
   const { videoId: nextVideoId } = listVideo[idx];
   dispatch(playVideo({ videoId: nextVideoId }));
 };
+export const saveListTitle = (title) => (dispatch) => {
+  const uuid = StoreList.getValue('uuid');
+  const listBookmark = StoreBookmark.getValue('list');
+  const idx = listBookmark.findIndex(bookmark => bookmark.uuid === uuid);
+  // listBookmark[idx] = { uuid, title };
+  listBookmark[idx].title = title;
+  StoreBookmark.setValue('list', listBookmark);
+  dispatch(setMain({
+    listBookmark,
+  }));
+}
 export const saveBookmarkTitle = (titleBookmark) => (dispatch) => {
-  // const { mainUI: { listBookmark } } = getState();
   createBookmark(null, titleBookmark);
   dispatch(setMain({
     listBookmark: StoreBookmark.getValue('list'),

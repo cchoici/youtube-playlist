@@ -16,7 +16,7 @@ export const mapStateToProps = ({
   loopType,
 });
 
-export const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = (dispatch) => ({
   onLoopChange: (loopType) => {
     switch(loopType) {
       case 'SINGLE':
@@ -27,6 +27,7 @@ export const mapDispatchToProps = dispatch => ({
     }
   },
   onEditSend: (title) => {
+    console.log('title:', title);
     dispatch(saveListTitle(title));
   },
   onTriggerSetting: () => {

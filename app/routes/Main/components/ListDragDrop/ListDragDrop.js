@@ -11,8 +11,12 @@ class ListDragDrop extends React.Component {
   constructor(props) {
     super(props);
     this.onDragEnd = this.onDragEnd.bind(this);
+    // this.onEditSend = this.onEditSend.bind(this);
   }
-
+  // onEditSend(title) {
+  //   console.log('title:', title);
+  //   this.props.onEditSend(title);
+  // }
   onDragEnd(result) {
     const { onDragEnd, listVideo: itemsOri } = this.props;
     // dropped outside the list
