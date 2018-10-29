@@ -1,15 +1,17 @@
 import { connect } from 'react-redux';
-import { setMain, saveBookmarkTitle, playBookmark } from '../modules/mainUI';
+import { setMain, addBookmarkTitle, playBookmark } from '../modules/mainUI';
 import ListCollection from '../components/ListCollection';
 
 export const mapStateToProps = ({
   mainUI: {
     winMode,
     listBookmark,
+    bookmarkId,
   },
 }) => ({
   visible: winMode === 'NORMAL' ? !false : false,
   listBookmark,
+  bookmarkId,
 });
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -17,7 +19,7 @@ export const mapDispatchToProps = (dispatch) => ({
     dispatch(setMain({ listBookmark }));
   },
   onEditSend: (titleBookmark) => {
-    dispatch(saveBookmarkTitle(titleBookmark));
+    dispatch(addBookmarkTitle(titleBookmark));
   },
   onSwitchBookmark: ({ uuid }) => {
     dispatch(playBookmark({ uuid }));

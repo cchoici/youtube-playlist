@@ -35,6 +35,7 @@ class ListDragDrop extends React.Component {
   render() {
     const {
       visible,
+      videoId,
       loopType,
       onLoopChange,
       onTriggerSetting,
@@ -44,6 +45,7 @@ class ListDragDrop extends React.Component {
       titleBookmark,
       onEditSend,
     } = this.props;
+    console.log('videoId: ', videoId);
     if (!visible) return null;
     return (
       <div className={styles.containerWrapper}>
@@ -64,6 +66,7 @@ class ListDragDrop extends React.Component {
                         <ListItem
                           item={item}
                           key={`${item.id}_item`}
+                          isPlay={item.videoId === videoId}
                           provided={provided2}
                           snapshot={snapshot2}
                           onRemoveVideo={onRemoveVideo}
@@ -86,6 +89,7 @@ class ListDragDrop extends React.Component {
 
 ListDragDrop.propTypes = {
   visible: PropTypes.bool,
+  videoId: PropTypes.string,
   titleBookmark: PropTypes.string,
   loopType: PropTypes.oneOf(['SINGLE', 'ALL']),
   onLoopChange: PropTypes.func,
@@ -99,6 +103,7 @@ ListDragDrop.propTypes = {
 
 ListDragDrop.defaultProps = {
   visible: true,
+  videoId: null,
   titleBookmark: '',
   loopType: 'SINGLE',
   onLoopChange: () => {},

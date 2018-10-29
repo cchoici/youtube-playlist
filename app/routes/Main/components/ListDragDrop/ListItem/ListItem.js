@@ -32,7 +32,12 @@ class ListItem extends React.Component {
     onSwitchVideo({ videoId });
   }
   render() {
-    const { item, provided, snapshot } = this.props;
+    const {
+      item,
+      provided,
+      snapshot,
+      isPlay,
+    } = this.props;
     return (
       <div
         className={styles.box}
@@ -63,7 +68,7 @@ class ListItem extends React.Component {
             onClick={this.onSwitchVideo}
           >
             {
-              item.isPlay
+              isPlay
               ? <MdPlayCircleFilled style={{ ...ICON_STYLES, width: 20, height: 20, color: '#b84747' }} />
               : <MdPlayCircleOutline style={{ ...ICON_STYLES, width: 20, height: 20 }} />
             }
@@ -76,6 +81,7 @@ class ListItem extends React.Component {
 
 ListItem.propTypes = {
   item: PropTypes.shape({}),
+  isPlay: PropTypes.bool,
   provided: PropTypes.shape({}),
   snapshot: PropTypes.shape({}),
   onSwitchVideo: PropTypes.func,
@@ -84,6 +90,7 @@ ListItem.propTypes = {
 
 ListItem.defaultProps = {
   item: {},
+  isPlay: false,
   provided: {},
   snapshot: {},
   onSwitchVideo: () => {},

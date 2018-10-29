@@ -1,17 +1,20 @@
 import { connect } from 'react-redux';
-import { setMain, removeVideo, playVideo, triggerSetting, saveListTitle } from '../modules/mainUI';
+import { setMain, removeVideo, playVideo, triggerSetting, saveBookmarkTitle } from '../modules/mainUI';
 import ListDragDrop from '../components/ListDragDrop';
 
 export const mapStateToProps = ({
   mainUI: {
     winMode,
-    titleBookmark,
+    videoId,
     listVideo,
+    bookmarkId,
+    listBookmark,
     loopType,
   },
 }) => ({
   visible: winMode === 'NORMAL' ? !false : false,
-  titleBookmark,
+  videoId,
+  titleBookmark: listBookmark.find(bookmark => bookmark.uuid === bookmarkId).title,
   listVideo,
   loopType,
 });
@@ -28,7 +31,7 @@ export const mapDispatchToProps = (dispatch) => ({
   },
   onEditSend: (title) => {
     console.log('title:', title);
-    dispatch(saveListTitle(title));
+    dispatch(saveBookmarkTitle(title));
   },
   onTriggerSetting: () => {
     dispatch(triggerSetting());
@@ -40,6 +43,7 @@ export const mapDispatchToProps = (dispatch) => ({
     dispatch(removeVideo({ videoId }));
   },
   onSwitchVideo: ({ videoId }) => {
+    console.log('vvvvvvvvvvv:', videoId);
     dispatch(playVideo({ videoId }));
   },
 });

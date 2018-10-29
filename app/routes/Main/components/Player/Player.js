@@ -52,7 +52,7 @@ class Player extends React.Component {
     this.onEnd = this.onEnd.bind(this);
   }
   
-  componentWillReceiveProps({isAddToList}) {
+  componentWillReceiveProps({ isAddToList }) {
     const { info } = this.state;
     if (isAddToList) {
         this.props.onAddVideoToList(info);

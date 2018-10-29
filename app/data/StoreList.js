@@ -29,7 +29,6 @@ export default class StoreList extends StoreBasic {
       title,
       author,
       duration,
-      isPlay: true,
     }
   }
   // static clearStoreList() {

@@ -53,8 +53,10 @@ export default class ListCollection extends React.Component {
     const {
       visible,
       listBookmark: items,
+      bookmarkId,
       onSwitchBookmark,
     } = this.props;
+    console.log('bookmarkId:', bookmarkId);
     const { isEditBookmark } = this.state;
     if (!visible) return null;
     return (
@@ -87,6 +89,7 @@ export default class ListCollection extends React.Component {
                       {(provided2, snapshot2) => (
                         <ListItem
                           item={item}
+                          isPlay={item.uuid === bookmarkId}
                           key={`${item.uuid}_${item.title}`}
                           provided={provided2}
                           snapshot={snapshot2}
@@ -108,6 +111,7 @@ export default class ListCollection extends React.Component {
 
 ListCollection.defaultProps = {
   visible: true,
+  bookmarkId: '',
   listBookmark: [],
   onDragEnd: () => {},
   onEditSend:() => {},
@@ -116,6 +120,7 @@ ListCollection.defaultProps = {
 
 ListCollection.propTypes = {
   visible: PropTypes.bool,
+  bookmarkId: PropTypes.string,
   listBookmark: PropTypes.arrayOf(PropTypes.object),
   onDragEnd: PropTypes.func,
   onEditSend: PropTypes.func,

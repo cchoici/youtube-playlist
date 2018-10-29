@@ -31,7 +31,8 @@ class ListItem extends React.Component {
     onSwitchBookmark({ uuid });
   }
   render() {
-    const { item, provided, snapshot } = this.props;
+    const { item, provided, snapshot, isPlay } = this.props;
+    console.log('id:', item.id);
     return (
       <div
         className={styles.box}
@@ -56,7 +57,7 @@ class ListItem extends React.Component {
             onClick={this.onSwitchBookmark}
           >
             {
-              item.isPlay
+              isPlay
               ? <MdPlayCircleFilled style={{ ...ICON_STYLES, width: 20, height: 20, color: '#b84747' }} />
               : <MdPlayCircleOutline style={{ ...ICON_STYLES, width: 20, height: 20 }} />
             }
@@ -69,6 +70,7 @@ class ListItem extends React.Component {
 
 ListItem.propTypes = {
   item: PropTypes.shape({}),
+  isPlay: PropTypes.bool,
   provided: PropTypes.shape({}),
   snapshot: PropTypes.shape({}),
   onSwitchBookmark: PropTypes.func,
@@ -77,6 +79,7 @@ ListItem.propTypes = {
 
 ListItem.defaultProps = {
   item: {},
+  isPlay: false,
   provided: {},
   snapshot: {},
   onSwitchBookmark: () => {},

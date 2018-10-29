@@ -26,12 +26,12 @@ const createBookmark = (id, titleBookmark) => {
   StoreList.init(uuid);
   list = StoreBookmark.getValue('list');
   uuid = StoreBookmark.getValue('uuid');
-  return list.find(item => item.uuid === uuid);
+  return uuid;
 }
 
 StoreBookmark.init('bookmark');
 const id = StoreBookmark.getValue('uuid');
-const { title: titleBookmarkInit } = createBookmark(id);
+const bookmarkIdInit  = createBookmark(id);
 StoreUI.init('ui');
 
 
@@ -41,11 +41,11 @@ const initialState = {
   winMode: StoreUI.getValue('winMode'),
   isDrawerOpen: false,
   videoId: StoreList.getValue('videoId'),
+  bookmarkId: bookmarkIdInit,
   isAddToList: false,
   loopType: "SINGLE",
   listBookmark: StoreBookmark.getValue('list'),
   listVideo: StoreList.getValue('list'),
-  titleBookmark: titleBookmarkInit,
 };
 console.log('initialState:', initialState);
 
@@ -65,19 +65,8 @@ export const removeVideo = ({ videoId }) => (dispatch, getState) => {
   }));
   
 };
-export const playVideo = ({ videoId }) => (dispatch, getState) => {
-  const { mainUI: { listVideo } } = getState();
-  const idx = findIndexVideo(videoId, listVideo);
-  const list = listVideo.map((obj, i) => {
-    const item = obj;
-    item.isPlay = i === idx ? !false : false;
-    return item;
-  });
-  list.slice(0);
-  dispatch(setMain({
-    videoId,
-    listVideo: list,
-  }));
+export const playVideo = ({ videoId }) => (dispatch) => {
+  dispatch(setMain({ videoId }));
 };
 
 export const playNextVideo = () => (dispatch, getState) => {
@@ -87,28 +76,35 @@ export const playNextVideo = () => (dispatch, getState) => {
   const { videoId: nextVideoId } = listVideo[idx];
   dispatch(playVideo({ videoId: nextVideoId }));
 };
-export const saveListTitle = (title) => (dispatch) => {
+export const saveBookmarkTitle = (title) => (dispatch) => {
   const uuid = StoreList.getValue('uuid');
   const listBookmark = StoreBookmark.getValue('list');
   const idx = listBookmark.findIndex(bookmark => bookmark.uuid === uuid);
-  // listBookmark[idx] = { uuid, title };
   listBookmark[idx].title = title;
   StoreBookmark.setValue('list', listBookmark);
-  dispatch(setMain({
-    listBookmark,
-  }));
+  dispatch(setMain({ listBookmark }));
 }
-export const saveBookmarkTitle = (titleBookmark) => (dispatch) => {
-  createBookmark(null, titleBookmark);
+export const addBookmarkTitle = (titleBookmark) => (dispatch) => {
+  const bookmarkId = createBookmark(null, titleBookmark);
   dispatch(setMain({
     listBookmark: StoreBookmark.getValue('list'),
+    listVideo: StoreList.getValue('list'),
+    videoId: StoreList.getValue('videoId'),
+    bookmarkId,
   }));
 };
 export const playBookmark =({ uuid }) => (dispatch) => {
-  const { title } = createBookmark(uuid);
+  const bookmarkId = createBookmark(uuid);
+  const listVideo = StoreList.getValue('list');
+  let videoId = StoreList.getValue('videoId');
+  if (!videoId && listVideo.length > 0) {
+    const { videoId: vId } = listVideo[0];
+    videoId = vId;
+  }
   dispatch(setMain({
-    listVideo: StoreList.getValue('list'),
-    titleBookmark: title,
+    videoId,
+    listVideo,
+    bookmarkId,
   }));
 };
 export const addVideoToList = ({
@@ -117,35 +113,27 @@ export const addVideoToList = ({
   title,
   duration,
 }) => (dispatch, getState) => {
-  if (!videoId) {
-    dispatch(setMain({ isAddToList: false }));
-    return;
-  }
-
+  // if (!videoId) {
+  //   dispatch(setMain({ videoId, isAddToList: false }));
+  //   return;
+  // }
   const { mainUI: { listVideo } } = getState();
   const isExist = listVideo.findIndex(item => item.id === videoId) !== -1;
   if (!isExist) {
-    const list = listVideo.map(obj => {
-      const item = obj;
-      item.isPlay = false;
-      return item;
-    })
-    dispatch(setMain({
-      listVideo: [StoreList.addItem({
+    const update = [StoreList.addItem({
         videoId,
         author,
         title,
         duration,
-      }), ...list],
+      }), ...listVideo];
+    StoreList.setValue('list', update);
+    dispatch(setMain({
+      listVideo: update,
       isAddToList: false,
     }));
+    console.log('pppppppppppppppppp');
   } else {
-    const list = listVideo.map(obj => {
-      const item = obj;
-      item.isPlay = videoId === item.videoId ? !false : false;
-      return item;
-    })
-    dispatch(setMain({ listVideo: list, isAddToList: false }));
+    dispatch(setMain({ videoId, isAddToList: false }));
   }
 };
 export const savePlayerData = () => (dispatch, getState) => {
