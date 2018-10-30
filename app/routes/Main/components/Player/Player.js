@@ -15,10 +15,12 @@ const opts = {
     // https://developers.google.com/youtube/player_parameters
     autoplay: 1,
     controls: 0,
-    showinfo: 0,
+    // showinfo: 0,
     rel: 0,
     playsinline: 0,
     modestbranding: 1,
+    cc_lang_pref: 'en',
+    cc_load_policy: 1,
     // loop: 1,
     fs: 0,
     iv_load_policy: 3
@@ -146,13 +148,22 @@ class Player extends React.Component {
       <div className={styles.containerPlayer}>
         <SearchBarContainer />
         <div className={styles.playerWrapper}>
-          <YouTube
-            videoId={videoId}
-            opts={opts}
-            onReady={this.onReady}
-            onEnd={this.onEnd}
-            onStateChange={this.onStateChange}
-          />
+          { videoId 
+              ? <YouTube
+                videoId={videoId}
+                opts={opts}
+                onReady={this.onReady}
+                onEnd={this.onEnd}
+                onStateChange={this.onStateChange}
+              />
+              : (
+                <div className={styles.msg}>
+                  <span>
+                    Please input youtube video address <br />on the top bar
+                  </span>
+                </div>
+              )
+          }
         </div>
         <NavBar {...paramsNavBar} />
       </div>

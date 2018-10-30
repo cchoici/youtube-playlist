@@ -3,6 +3,20 @@
   flex-direction: column;
   .playerWrapper{
     flex: 1;
+    background: #333;
+    .msg {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      span {
+        display: inline-block;
+        font-size: 13px;
+        padding: 0 10px 15px 10px;
+        text-align: center;
+        text-shadow: 0 0 2px #000;
+      }
+    }
   }
   .containerVolume {
     width: 100px !important;
