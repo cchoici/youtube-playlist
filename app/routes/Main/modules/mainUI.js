@@ -93,6 +93,21 @@ export const addBookmarkTitle = (titleBookmark) => (dispatch) => {
     bookmarkId,
   }));
 };
+export const removeBookmark = ({ uuid }) => (dispatch, getState) => {
+  const { mainUI: { listBookmark, bookmarkId } } = getState();
+  const listBookmarkNext = listBookmark.filter(bookmark => bookmark.uuid !== uuid);
+  const lg = listBookmarkNext.length;
+  if (lg > 0 && bookmarkId !== uuid) {
+    StoreBookmark.setValue('list', listBookmarkNext);
+    dispatch(setMain({
+      listBookmark: listBookmarkNext,
+      bookmarkId: bookmarkId === uuid ? null : bookmarkId,
+    }))
+    StoreList.deleteList(uuid);
+  } else {
+    console.log('at least one remained');
+  }
+};
 export const playBookmark =({ uuid }) => (dispatch) => {
   const bookmarkId = createBookmark(uuid);
   const listVideo = StoreList.getValue('list');

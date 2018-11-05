@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdClose, MdPlayCircleFilled, MdPlayCircleOutline, MdFolderOpen } from "react-icons/md";
+import { MdClose, MdPlayCircleFilled, MdPlayCircleOutline } from "react-icons/md";
 import { ICON_STYLES } from 'constants/config';
 import styles from './listItemStyles.scss';
 
@@ -19,6 +19,7 @@ const getItemStyle = (isDragging, draggableStyle) => {
 class ListItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state={ isShow: false };
     this.onRemoveBookmark = this.onRemoveBookmark.bind(this);
     this.onSwitchBookmark = this.onSwitchBookmark.bind(this);
   }
@@ -32,7 +33,7 @@ class ListItem extends React.Component {
   }
   render() {
     const { item, provided, snapshot, isPlay } = this.props;
-    console.log('id:', item.id);
+    const { isShow } = this.state;
     return (
       <div
         className={styles.box}
@@ -43,26 +44,32 @@ class ListItem extends React.Component {
           snapshot.isDragging,
           provided.draggableProps.style
         )}
+        onMouseOver={() => { this.setState({ isShow: true }); }}
+        onMouseOut={() => { this.setState({ isShow: false }); }}
+        onFocus={() => {}}
+        onBlur={() => {}}
       >
-        <MdFolderOpen style={{ ...ICON_STYLES, width: 25, height: 25 }} />
+        {/* <MdFolderOpen style={{ ...ICON_STYLES, width: 20, height: 20 }} /> */}
+        <button
+          type="button"
+          onClick={this.onSwitchBookmark}
+        >
+          {
+            isPlay
+            ? <MdPlayCircleFilled style={{ ...ICON_STYLES, width: 20, height: 20, color: '#b84747' }} />
+            : <MdPlayCircleOutline style={{ ...ICON_STYLES, width: 20, height: 20 }} />
+          }
+        </button>
         <span>
           {item.title}
         </span>
-        <div className={styles.navGroup}>
-          <button type="button" onClick={this.onRemoveBookmark}>
-            <MdClose style={ICON_STYLES} />
-          </button>
-          <button
-            className={styles.btn}
-            onClick={this.onSwitchBookmark}
-          >
-            {
-              isPlay
-              ? <MdPlayCircleFilled style={{ ...ICON_STYLES, width: 20, height: 20, color: '#b84747' }} />
-              : <MdPlayCircleOutline style={{ ...ICON_STYLES, width: 20, height: 20 }} />
-            }
-          </button>
-        </div>
+        {
+          !isPlay && isShow && (
+            <button type="button" onClick={this.onRemoveBookmark}>
+              <MdClose style={ICON_STYLES} />
+            </button>
+          )
+        }
       </div>
     );
   }

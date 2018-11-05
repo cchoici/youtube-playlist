@@ -54,6 +54,7 @@ export default class ListCollection extends React.Component {
       visible,
       listBookmark: items,
       bookmarkId,
+      onRemoveBookmark,
       onSwitchBookmark,
     } = this.props;
     console.log('bookmarkId:', bookmarkId);
@@ -93,6 +94,7 @@ export default class ListCollection extends React.Component {
                           key={`${item.uuid}_${item.title}`}
                           provided={provided2}
                           snapshot={snapshot2}
+                          onRemoveBookmark={onRemoveBookmark}
                           onSwitchBookmark={onSwitchBookmark}
                         />
                       )}
@@ -115,6 +117,7 @@ ListCollection.defaultProps = {
   listBookmark: [],
   onDragEnd: () => {},
   onEditSend:() => {},
+  onRemoveBookmark: () => {},
   onSwitchBookmark:() => {},
 };
 
@@ -124,5 +127,6 @@ ListCollection.propTypes = {
   listBookmark: PropTypes.arrayOf(PropTypes.object),
   onDragEnd: PropTypes.func,
   onEditSend: PropTypes.func,
+  onRemoveBookmark: PropTypes.func,
   onSwitchBookmark: PropTypes.func,
 };

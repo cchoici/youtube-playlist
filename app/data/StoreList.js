@@ -1,4 +1,5 @@
 import Store from 'electron-store';
+import fs from 'fs';
 import StoreBasic from './StoreBasic';
 
 export default class StoreList extends StoreBasic {
@@ -16,7 +17,19 @@ export default class StoreList extends StoreBasic {
       },
     });
   }
-
+  static deleteList(uuid) {
+    StoreList.init(uuid);
+    const filepath = this.data.path;
+    if (fs.existsSync(filepath)) {
+      fs.unlink(filepath, (err) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log("File succesfully deleted");
+      });
+    }
+  }
   static addItem({
     videoId,
     title,

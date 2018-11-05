@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setMain, addBookmarkTitle, playBookmark } from '../modules/mainUI';
+import { setMain, addBookmarkTitle, playBookmark, removeBookmark } from '../modules/mainUI';
 import ListCollection from '../components/ListCollection';
 
 export const mapStateToProps = ({
@@ -20,6 +20,10 @@ export const mapDispatchToProps = (dispatch) => ({
   },
   onEditSend: (titleBookmark) => {
     dispatch(addBookmarkTitle(titleBookmark));
+  },
+  onRemoveBookmark: ({ uuid }) => {
+    // dispatch(setMain({ modal: { key: 'BOOKMARK_DELETE', uuid } }));
+    dispatch(removeBookmark({ uuid }));
   },
   onSwitchBookmark: ({ uuid }) => {
     dispatch(playBookmark({ uuid }));
